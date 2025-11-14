@@ -317,3 +317,26 @@
   opacity: .8;
   font-weight: 400;
 }
+
+
+/* -------------------------
+   HOUSE DESIGNS CAROUSEL
+   ------------------------- */
+.house-image-carousel {
+  height: 80vh;
+  width: 100%;
+  background: var(--bs-gray-300);
+  overflow: hidden
+}
+
+.house-image-carousel .carousel-inner,
+.house-image-carousel .carousel-item {
+  height: 100%;
+}
+
+.house-image-carousel .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

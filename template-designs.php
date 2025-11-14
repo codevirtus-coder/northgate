@@ -157,7 +157,7 @@
             if (!empty($slide['design_images'])) :
         ?>       
               <div class="carousel-item <?php echo $slide_index === 0 ? 'active' : ''; ?>">
-                <img src="<?php echo esc_url($slide['design_images']); ?>" alt="Design Slide <?php echo $slide_index + 1; ?>">
+                <img src="<?php echo esc_url($slide['design_images']); ?>" class="d-block w-100" alt="Design Slide <?php echo $slide_index + 1; ?>">
               </div>
         <?php 
             endif;
@@ -459,7 +459,7 @@
         ${Array.isArray(plan.slider) && plan.slider.length 
           ? plan.slider.map((slide, idx) => `
               <div class="carousel-item ${idx === 0 ? 'active' : ''}">
-                <img src="${slide.design_images || ''}" alt="Design Slide ${idx + 1}">
+                <img src="${slide.design_images || ''}" class="d-block w-100" alt="Design Slide ${idx + 1}">
               </div>
             `).join('')
           : '<div class="carousel-item active"><p>No slider images.</p></div>'
