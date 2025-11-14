@@ -68,8 +68,8 @@ add_action('admin_enqueue_scripts', function () {
  * 2) Assets (Bootstrap, Icons, Google Font, Theme CSS, Bootstrap JS)
  * ----------------------------------------------------------- */
 add_action('wp_enqueue_scripts', function () {
-	wp_enqueue_style('bootstrap-css', get_template_directory_uri() . './assets/css/bootstrap.min.css', [], '1.5.0');
-	wp_enqueue_style('styles-css', get_template_directory_uri() . './assets/css/style.min.css', [], '1.5.0');
+	wp_enqueue_style('bootstrap-css', get_template_directory_uri() . '/assets/css/bootstrap.min.css', [], '1.5.0');
+	wp_enqueue_style('styles-css', get_template_directory_uri() . '/assets/css/style.min.css', [], '1.5.0');
 	// JS
 	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', [], null, true);
 }, 20);
@@ -222,7 +222,7 @@ add_action('carbon_fields_register_fields', function () {
 			Field::make('text',  'slider_home_text', 'Slide Headline (optional)')->set_width(50),
 			Field::make('text',  'slider_btn_text',  'Button Text')->set_width(50),
 			Field::make('text',  'slider_btn_url',   'Button URL')->set_width(50),
-		]);
+	]);
 
 	// Post/Page Banner
 	Container::make('post_meta', 'Banner')
@@ -230,10 +230,10 @@ add_action('carbon_fields_register_fields', function () {
 		->add_fields([
 			Field::make('text',  'banner_headline', 'Banner Headline'),
 			Field::make('image', 'banner_image',    'Banner Image'),
-		]);
+	]);
 
 	// Designs
-    Container::make( 'post_meta', 'Architectural DESIGNS' )
+    Container::make( 'post_meta', 'Architectural Designs' )
 		->where( 'post_type', '=', 'designs' )
 		->add_fields( [
 			Field::make('text',  'design_price', 'Total Price')

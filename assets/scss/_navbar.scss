@@ -32,7 +32,6 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--site-sans);
   font-weight: 700;
 }
 
@@ -125,7 +124,6 @@ color: #DD9E17
   list-style: none;
   display: flex;
   gap: 15px;
-  font-family: var(--site-sans);
   font-size: inherit;
   font-weight: inherit;
   text-transform: inherit;
