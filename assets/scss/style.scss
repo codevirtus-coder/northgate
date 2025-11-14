@@ -1,0 +1,20 @@
+/* assets/scss/style.scss */
+
+
+@use "bootstrap-icons";
+@use "tokens";
+@use "navbar";
+@use "footer";
+@use "buttons";
+@use "banner";
+@use "app";
+
+@use "pages/residential";
+@use "pages/commercial";
+@use "pages/light-industry";
+@use "pages/estates";
+@use "pages/updates";
+@use "pages/news";
+@use "pages/about";
+@use "pages/home";
+@use "pages/contact-us";

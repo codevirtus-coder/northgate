@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * front-page.php
+ * Static front page template.
+ */
+
+get_header();
+get_template_part( 'banners/allpage-banner' );
+?>
+
+
+<?php get_footer(); ?>

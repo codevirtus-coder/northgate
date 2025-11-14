@@ -1,0 +1,12 @@
+{
+  "name": "north-gate-theme",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "sass --watch --no-source-map assets/scss/style.scss:assets/css/style.min.css --style=compressed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

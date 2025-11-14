@@ -1,0 +1,208 @@
+.news-nav button {
+  width: var(--control-size);
+  height: var(--control-size);
+  border-radius: 50%;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #f1f3f5;
+  color: var(--brand-dark);
+  line-height: 1;
+  padding: 0;
+  transition: transform 0.2s ease, background 0.2s ease;
+  position: relative;
+}
+
+.news-body .btn-secondary {
+  margin-top: auto;
+  font-family: var(--site-sans)
+}
+
+.news-archive-body .btn-secondary {
+  margin-top: auto;
+  align-self: flex-start;
+  font-family: var(--site-sans)
+}
+
+.featured-tiles .tile-btn {
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 8px 18px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: .6px;
+  font-size: 12px;
+  border-radius: 2px;
+  background: transparent;
+  font-family: var(--site-sans)
+}
+
+
+.stand-cta { margin-top: 12px; }
+.btn-stand {
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 1rem 3.2rem;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: .6px;
+  border-radius: 4px;
+  z-index: 2;
+  background: #43547B;
+  font-family: var(--site-sans)
+}
+
+.btn-stand:hover,
+.btn-stand:focus {
+  background: var(--brand-primary);
+}
+
+.btn-signup {
+  margin-top: 6px;
+  padding: 16px 18px;
+  background: #15345a;      
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: transform .12s ease, box-shadow .12s ease;
+  font-family: var(--site-sans)
+}
+.btn-signup:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(21,52,90,0.18); }
+
+.btn-ghost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff !important;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-block;
+  font-family: var(--site-sans)
+}
+
+.banner-cta .btn-cta {
+  background: var(--brand-dark);
+  color: #fff;
+  display: inline-block;
+  padding: 1rem 3.2rem;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: .6px;
+  border-radius: 4px;
+  
+  z-index: 2;
+  font-family: var(--site-sans)
+}
+
+
+.btn-cta,
+.btn-cta-outline {
+  display: inline-block;
+  padding: calc(var(--space-sm) * 1.1) calc(var(--space-md) * 1.1);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: .6px;
+  border-radius: 4px;
+  font-family: var(--site-sans)
+}
+
+
+
+.btn-cta {
+  color: #fff;
+}
+
+.btn-secondary{
+  background:  #1A3564;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 0.8rem 3.2rem;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: .6px;
+  z-index: 2;
+  font-family: var(--site-sans)
+}
+
+.btn-secondary-2{
+  background:  #1A3564;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 0.8rem 3.2rem;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: .6px;
+  z-index: 2;
+  width: 100%;
+  
+}
+
+.btn-secondary:hover{
+  background:  var(--brand-primary);
+  
+  border: none;
+  display: inline-block;
+  padding: 0.8rem 3.2rem;
+}
+
+.btn-primary-2:hover{
+  background: var(--brand-primary);
+}
+
+
+.btn-secondary-2 {
+  margin-top: auto;
+  align-self: flex-start;
+  font-family: var(--site-sans)
+}
+
+.btn-primary {
+  color: #1A3564;
+  font-family: var(--site-sans)
+}
+
+.btn-primary .btn-cta{
+  color: #1A3564;
+  background:  white;
+ text-transform: uppercase;
+  display: inline-block;
+  padding: 1rem 3.2rem;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: .6px;
+  z-index: 2;
+  font-family: var(--site-sans)
+}
+
+
+.btn-primary .btn-cta:hover{
+  color: #fff;
+  background: var(--brand-primary);
+}
+
+
+.btn-cta-outline {
+  border: 2px solid var(--brand-dark);
+  color: var(--brand-dark);
+  
+  background: transparent;
+}
+

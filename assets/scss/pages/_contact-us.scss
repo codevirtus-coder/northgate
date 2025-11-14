@@ -1,0 +1,106 @@
+/* Contact Us Page */
+
+.container { max-width: 1180px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; }
+
+.visit-us-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 48px;
+  align-items: stretch;   
+  padding: 56px 0;
+}
+
+.visit-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.visit-title {
+  font-size: 48px;
+  color: #21385c;
+  margin: 0 0 24px 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #eef3f7;     
+  padding: 14px 18px;
+  border-radius: 4px;
+  border-left: 4px solid rgba(33,56,92,0.04);
+  box-shadow: 0 6px 18px rgba(12,25,40,0.04);
+}
+
+.contact-card .icon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 6px;
+  flex: 0 0 44px;
+}
+
+.contact-card .icon svg { width: 20px; height: 20px; display: block; }
+
+.contact-text {
+  color: #233d63;
+   font-size: var(--fs-body);
+  line-height: var(--leading-body);
+  text-decoration: none;
+  
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  transition: transform .18s ease;
+}
+
+.map-wrap {
+  width: 100%;
+  height: 100%;        
+  min-height: 260px;   
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 6px 30px rgba(12,25,40,0.06);
+  overflow: hidden;
+  border: 4px solid rgba(245, 245, 245, 0.7);
+}
+
+.map-wrap iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+
+
+@media (min-width: 1300px) {
+  .map-wrap { height: 420px; }
+}
+
+
+@media (max-width: 980px) {
+  .visit-us-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .visit-title { font-size: 36px; text-align: left; }
+  .map-wrap { height: 260px; }
+}
+
+@media (max-width: 480px) {
+  .visit-title { font-size: 28px; }
+  .contact-card { padding: 12px; gap: 12px; }
+  .contact-card .icon { width: 40px; height: 40px; flex: 0 0 40px; }
+}

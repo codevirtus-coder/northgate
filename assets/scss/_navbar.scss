@@ -1,0 +1,152 @@
+.navbar-brand img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.navbar-nav .nav-link {
+  color: #1A3564;
+  padding: .45rem 0.9rem;
+  font-weight: 700;
+  transition: color .18s ease, background-color .18s ease;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+
+
+
+.site-header .navbar {
+  padding: 2rem 0;
+  background: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+}
+
+
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--site-sans);
+  font-weight: 700;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+color: #DD9E17
+}
+
+
+.navbar-nav .current-menu-item> .nav-link,
+.navbar-nav .nav-link.active {
+  border-bottom: 2px solid #1A3564; 
+  color: #1A3564;
+  border-radius: 0;
+  font-weight: 800;
+}
+
+.social-wrap {
+  margin-left: 0.5rem;
+  display: flex;
+  gap: .3rem;
+  align-items: center;
+}
+
+/* -------------------------
+   DROPDOWNS
+   ------------------------- */
+/* .navbar-nav .dropdown-menu {
+  border: 1px solid #e9ecef;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  margin-top: 5rem;
+  min-width: 12rem;
+} */
+
+/* .navbar-nav .dropdown-item {
+  padding: .45rem 1rem;
+  color: #333;
+} */
+
+/* .navbar-nav .dropdown-item:hover {
+  background: rgba(3, 111, 60, 0.06);
+  color: #036F3C;
+} */
+
+/* ensure caret spacing */
+/* .navbar-nav .dropdown-toggle::after {
+  margin-left: .35rem;
+} */
+
+/* -------------------------
+   MOBILE tweaks
+   ------------------------- */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    margin-top: 0;
+  }
+
+  .navbar-nav .nav-link {
+    padding: .6rem 1rem;
+  }
+
+  .site-header .navbar {
+    padding: .4rem .8rem;
+  }
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-nav .nav-link {
+  line-height: 1.6;
+}
+
+
+/* -------------------------
+   TOPBAR STYLES
+   ------------------------- */
+.top-bar {
+  background-color: #1A3564;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  font-family: var(--site-sans);
+  font-size: inherit;
+  font-weight: inherit;
+  text-transform: inherit;
+}
+
+.top-menu li {
+  display: inline;
+}
+
+.top-menu a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: .45rem 0;
+  font-weight: 700;
+  transition: color .18s ease, background-color .18s ease;
+  text-transform: uppercase;
+  font-size: 13.5px;
+}
+
+
+
+.top-menu a:hover {
+color: #FFD100
+}

@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root {
+  --brand: #12325a;
+  --brand-dark: #1A3564;
+  --brand-primary: #DD9E17;
+  --muted: #1A3564;
+  --heading-weight: 700;
+  --body-weight: 400;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --section-vertical: var(--space-xl);
+  --section-horizontal: var(--space-lg);
+  --hero-image-width: 460px;
+  --hero-image-width-sm: 380px;
+  --card-min-height: 300px;
+  --control-size: 44px;
+  --fs-h1: clamp(2rem, 5vw, 4rem);
+  --fs-h2: clamp(1.6rem, 4vw, 3rem);
+  --fs-h3: clamp(1.1rem, 2.6vw, 1.5rem);
+  --fs-body: 1.3rem;
+  --leading-body: 1;
+  --footer-text: #fff;
+   --primary: #036F3C;
+  --accent: #FFD100;
+  --muted: #6c757d;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,74 @@
+/* assets/scss/sections/_banner.scss */
+
+/* Banner / Hero */
+.site-banner {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+
+  .carousel {
+    height: 450px;
+
+    .carousel-inner { height: 100%; width: 100%; }
+
+    .carousel-item {
+      transition: transform .2s ease-in-out;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      will-change: transform;
+    }
+
+    &.carousel-fade .carousel-item { transition: opacity .2s ease-in-out; }
+  }
+
+  .banner-slider {
+    height: 500px; width: 100%;
+    background-size: cover; background-position: center;
+    position: relative;
+
+    .container {
+      height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+  }
+
+  &.hero-centered {
+    height: 450px; width: 100%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    background-size: cover; background-position: center;
+
+    .overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 1;
+    }
+  }
+
+  .banner-inner {
+    position: relative; z-index: 2;
+    height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 0 1rem;
+
+    .banner-content,
+    .banner-centered {
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; height: 100%;
+    }
+  }
+}
+
+/* Titles */
+.banner-title,
+.banner-title-news {
+  margin: 0; color: #fff;
+  font-weight: 900;
+}
+.banner-title { line-height: auto;  font-size: 3rem;}
+.banner-title-news { font-size: 2.5rem; }
+
+.banner-cards-wrapper { bottom: 24px; }
+.banner-card { min-width: 200px; padding: 12px 20px; gap: 14px; border-radius: 4px; }
+.banner-card.active { background: #15345a; transform: translateY(-4px); }

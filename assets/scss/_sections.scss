@@ -1,0 +1,319 @@
+/* -------------------------
+   BANNER STYLES
+   ------------------------- */
+.site-banner .carousel {
+  height: 450px;
+}
+
+.site-banner .carousel-item {
+  transition: transform .20s ease-in-out;
+  -webkit-transition: -webkit-transform .20s ease-in-out;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+}
+
+.site-banner .carousel-fade .carousel-item {
+  transition: opacity .20s ease-in-out;
+}
+
+.site-banner .carousel-inner {
+  height: 100%;
+  width: 100%;
+}
+
+.site-banner .banner-slider {
+  height: 500px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.site-banner.hero-centered {
+  height: 450px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.site-banner.hero-centered .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.site-banner .banner-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  z-index: 2;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.banner-title {
+  margin: 0;
+  color: #fff;
+  
+  font-weight: 900;
+  line-height: 0.8;
+}
+
+.banner-title-news {
+  margin: 0;
+  color: #fff;
+  
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+/* -------------------------
+   NEWS SECTIONS
+   ------------------------- */
+.front-page .news-section {
+  padding: 0rem 0;
+}
+
+.front-page .news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.front-page .news-nav {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+
+.front-page .news-nav .news-next {
+  background: var(--brand);
+  color: #fff;
+}
+
+.front-page .news-nav button {
+  width: var(--control-size);
+  height: var(--control-size);
+  border-radius: 50%;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #f1f3f5;
+  color: var(--brand-dark);
+  line-height: 1;
+  padding: 0;
+  transition: transform 0.2s ease, background 0.2s ease;
+  position: relative;
+}
+
+.front-page .news-carousel {
+  display: flex;
+  gap: 1.1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: var(--space-xs);
+}
+
+.front-page .news-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+/* -------------------------
+   HERO SECTIONS
+   ------------------------- */
+.front-page .hero-two-col {
+  display: grid;
+  grid-template-columns: 1fr var(--hero-image-width);
+  gap: var(--space-lg);
+  align-items: stretch;
+  margin-top: 5rem;
+}
+
+.front-page .hero-image {
+  height: 100%;
+  display: block;
+  align-self: stretch;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.front-page .hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.front-page .hero-text {
+  max-width: 780px;
+}
+
+/* -------------------------
+   LIFESTYLE SECTIONS
+   ------------------------- */
+.front-page .lifestyle-section {
+  margin-top: var(--space-lg);
+  border-radius: 6px;
+  background: #EBECEE !important;
+}
+
+.front-page .lifestyle-header {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+}
+
+.front-page .lifestyle-intro {
+  max-width: 44%;
+  color: var(--muted);
+  font-size: var(--fs-body);
+}
+
+.front-page .lifestyle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.front-page .home-card {
+  min-height: 350px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: end;
+  transition: transform .28s ease, box-shadow .28s ease;
+  position: relative;
+}
+
+.front-page .home-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.20);
+  z-index: 2;
+}
+
+.front-page .home-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(12, 32, 60, 0.12);
+}
+
+/* -------------------------
+   PARTNERS SECTION
+   ------------------------- */
+.partners-section {
+  padding: 64px 0;
+  background: #fff;
+}
+
+.partners-title {
+  font-size: var(--fs-h2);
+  font-weight: var(--heading-weight);
+  color: var(--brand-dark);
+  margin: 0 0 18px 0;
+  line-height: 1.2;
+}
+
+.partners-left .partners-line {
+  width: 180px;
+  height: 2px;
+  background: var(--brand-dark);
+  position: relative;
+}
+
+.partners-left .partners-line::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-dark);
+  position: absolute;
+  right: -10px;
+  top: -2px;
+}
+
+.partners-right .partners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px 36px;
+  align-items: center;
+  justify-items: center;
+}
+
+/* -------------------------
+   VIDEO HERO
+   ------------------------- */
+.video-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7.5;
+  background: #000;
+  overflow: hidden;
+}
+
+.video-hero .wp-video,
+.video-hero .mejs-container,
+.video-hero .mejs-inner,
+.video-hero .mejs-mediaelement,
+.video-hero .wp-video-shortcode,
+.video-hero video {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+}
+
+.video-hero video {
+  object-fit: cover;
+  display: block;
+}
+
+.video-hero:not(.is-playing) .mejs-controls,
+.video-hero:not(.is-playing) .mejs__controls {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* -------------------------
+   BREADCRUMBS
+   ------------------------- */
+.ng-breadcrumbs {
+  margin-top: .75rem;
+  font-size: 1rem;
+  color: rgba(255,255,255,.9);
+}
+
+.ng-breadcrumbs a {
+  font-weight: 700;
+  color: #ffd66b;
+  text-decoration: none;
+}
+
+.ng-breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.ng-breadcrumbs .sep {
+  padding: 0 .4rem;
+  opacity: .8;
+  font-weight: 400;
+}
