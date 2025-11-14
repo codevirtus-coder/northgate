@@ -68,9 +68,7 @@ add_action('admin_enqueue_scripts', function () {
  * 2) Assets (Bootstrap, Icons, Google Font, Theme CSS, Bootstrap JS)
  * ----------------------------------------------------------- */
 add_action('wp_enqueue_scripts', function () {
-	wp_enqueue_style('bootstrap-css', get_template_directory_uri() . '/assets/css/bootstrap.min.css', [], '1.5.0');
-	wp_enqueue_style('styles-css', get_template_directory_uri() . '/assets/css/style.min.css', [], '1.5.0');
-	// JS
+	wp_enqueue_style('northgate-style', get_stylesheet_uri());
 	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', [], null, true);
 }, 20);
 
