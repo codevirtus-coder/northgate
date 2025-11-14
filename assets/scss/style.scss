@@ -1,11 +1,12 @@
 /* assets/scss/style.scss */
-@use "bootstrap-icons";
-@use "typography";
-@use "navbar";
-@use "footer";
-@use "buttons";
-@use "banner";
 @use "app";
+@use "bootstrap-icons";
+@use "banner";
+@use "buttons";
+@use "footer";
+@use "navbar";
+@use "typography";
+
 
 @use "pages/residential";
 @use "pages/commercial";

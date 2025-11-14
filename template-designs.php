@@ -217,7 +217,7 @@
         </ul>
 
         <div class="stand-cta">
-          <a class="btn-stand" href="#" role="button">BUY STAND</a>
+          <a class="btn-stand" href="https://portal.northgateestates.co.zw/" role="button" target="_blank" rel="noopener noreferrer">BUY STAND</a>
         </div>
       </div>
 
@@ -502,6 +502,12 @@
 
     picker.dataset.current = String(index);
     if (labelEl) labelEl.textContent = plan.title || 'Plan';
+
+    const titleEl = document.getElementById('house-layout-title');
+    if (titleEl) {
+      titleEl.textContent = plan.title || '';
+    }
+
     if (drawingEl && plan.plan_img) {
       drawingEl.src = plan.plan_img;
       drawingEl.alt = (plan.title || '') + ' plan';
