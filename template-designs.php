@@ -106,10 +106,7 @@
           if (!empty($slides)) :
               foreach ($slides as $slide) :
                   if (!empty($slide['design_images'])) :
-          ?>
-          
-
-                  
+          ?>       
 
                   <div class="carousel-item <?php echo $slide === 0 ? 'active' : ''; ?>">
           <img src="<?php echo esc_url($slide['design_images']); ?>" alt="Design Slide">
