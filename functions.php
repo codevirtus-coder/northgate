@@ -64,16 +64,17 @@ add_action('admin_enqueue_scripts', function () {
 
 
 
-
 /* -----------------------------------------------------------
  * 2) Assets (Bootstrap, Icons, Google Font, Theme CSS, Bootstrap JS)
  * ----------------------------------------------------------- */
 add_action('wp_enqueue_scripts', function () {
-  wp_enqueue_style('bootstrap-css', get_template_directory_uri() . './assets/css/bootstrap.min.css', [], '5.3.2');
-    wp_enqueue_style('styles-css', get_template_directory_uri() . './assets/css/style.min.css', [], '5.3.2');
-  // JS
-  wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', [], null, true);
+	wp_enqueue_style('bootstrap-css', get_template_directory_uri() . './assets/css/bootstrap.min.css', [], '1.5.0');
+	wp_enqueue_style('styles-css', get_template_directory_uri() . './assets/css/style.min.css', [], '1.5.0');
+	// JS
+	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', [], null, true);
 }, 20);
+
+
 
 
 
@@ -105,8 +106,10 @@ add_filter('nav_menu_link_attributes', function ($atts, $item, $args) {
 
 
 
+
+
 /* -----------------------------------------------------------
- * 4) Northgate Slider CPT 
+ * 4) Slider CPT 
  * ----------------------------------------------------------- */
 add_action('init', function () {
 	register_post_type('northgate-slider', [
@@ -126,7 +129,13 @@ add_action('init', function () {
 	]);
 });
 
-// Designs CPT
+
+
+
+
+/* -----------------------------------------------------------
+ * 5) Designs CPT 
+ * ----------------------------------------------------------- */
 add_action('init', function () {
 	register_post_type('designs', [
 		'labels' => [
@@ -145,8 +154,11 @@ add_action('init', function () {
 });
 
 
+
+
+
 /* -----------------------------------------------------------
- * 5) Nav preview script + data
+ * 6) Nav Preview script + data
  * ----------------------------------------------------------- */
 add_action('wp_enqueue_scripts', function () {
 	$handle = 'nav-card-hover';
@@ -190,14 +202,19 @@ add_action('wp_enqueue_scripts', function () {
 	wp_localize_script($handle, 'navPreviewData', $preview_data);
 }, 25);
 
+
+
+
+
 /* -----------------------------------------------------------
- * 6) Carbon Fields meta/option containers
+ * 7) Carbon Fields meta/option containers
  * ----------------------------------------------------------- */
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 use Carbon_Fields\Block;
 
 add_action('carbon_fields_register_fields', function () {
+
 	// Slider fields
 	Container::make('post_meta', 'Northgate Slider')
 		->where('post_type', '=', 'northgate-slider')
@@ -207,7 +224,7 @@ add_action('carbon_fields_register_fields', function () {
 			Field::make('text',  'slider_btn_url',   'Button URL')->set_width(50),
 		]);
 
-	// Post/Page banner
+	// Post/Page Banner
 	Container::make('post_meta', 'Banner')
 		->where('post_type', '=', 'page')
 		->add_fields([
