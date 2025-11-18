@@ -58,7 +58,7 @@
   font-size: 18px;
   
   line-height: -1.5;
-  color:#1A3564;
+  color:var(--brand-dark);
   font-weight: 400;
   letter-spacing: -0.020em;  
 }
@@ -69,7 +69,7 @@
   left:0; top:.55em;
   width:.55rem; height:.55rem;
   border-radius:50%;
-  background:#1A3564;                
+  background:var(--brand-dark);                
   box-shadow:0 0 0 3px rgba(26,53,100,.18);
 }
 

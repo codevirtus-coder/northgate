@@ -3,8 +3,8 @@
 **********************************/
 
 .house-layout-section {
-  padding: 60px 0;
-  color: #203556;
+  padding: 80px 0 0 0;
+  color: var( --brand-dark);
   
 }
 
@@ -40,7 +40,7 @@
 }
 .floor-tab.is-active {
   background: #0f356a;  
-  color: #fff;
+  color: var(--bs-white);
   box-shadow: 0 6px 14px rgba(2, 40, 97, 0.12);
 }
 
@@ -140,7 +140,7 @@
 }
 .total-label {
   font-weight: 700;
-  color: #203556;
+  color: var( --brand-dark);
   letter-spacing: 0.04em;
 }
 .total-value {
@@ -188,7 +188,7 @@
 
 .plan-menu{
   position:absolute; top:100%; left:0; right:0; z-index:20;
-  background:#17365f; color:#fff;
+  background:#17365f; color:var(--bs-white);
   border-radius:6px; margin-top:8px; padding:12px 0;
   box-shadow:0 18px 40px rgba(0,0,0,.25);
   max-height:600px; overflow:auto; display:none;
@@ -218,7 +218,7 @@
 
 .plan-thumb{ width:84px; height:56px; border-radius:8px; object-fit:cover; flex:0 0 84px; }
 .plan-title{ font-weight:600; font-size:16px; }
-.plan-divider{ height:1px; margin:2px 18px; background: #fff; }
+.plan-divider{ height:1px; margin:2px 18px; background: var(--bs-white); }
 
 #plan-hero{ border-radius:4px; }
 
@@ -226,7 +226,7 @@
 /* Stand section (clone) */
 .stand-section {
   background: #12345b; 
-  color: #ffffff;
+  color: var(--bs-white);
   padding: 56px 0;
   
 }
@@ -256,7 +256,7 @@
 .stand-intro {
   font-size: var(--fs-body);
   
-  color:#fff;
+  color:var(--bs-white);
   margin: 0 0 var(--space-md) 0;
   font-weight: 400;
   line-height: 1 !important;       
@@ -294,7 +294,7 @@
   font-size: 14px;
 }
 
-.feature-text strong { display:block; margin-top:4px; font-weight:600; color:#fff; }
+.feature-text strong { display:block; margin-top:4px; font-weight:600; color:var(--bs-white); }
 
 /* CTA */
 
@@ -382,7 +382,7 @@
   z-index: 2;
   bottom: 30px;
   left: 30px;
-  color: #fff;
+  color: var(--bs-white);
 }
 
 

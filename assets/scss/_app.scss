@@ -11,7 +11,7 @@
 
 .section-lead {
    font-size: var(--fs-body);
-  color:#1A3564;
+  color:var(--brand-dark);
   margin: 0 0 var(--space-md) 0;
   font-weight: 400;
   line-height: 1 !important;       
@@ -23,7 +23,7 @@
   line-height: var(--leading-body);
   margin: 0 0 var(--space-md) 0;
   font-weight: 400;
-  background: linear-gradient(178.78deg, #1A3564 1.05%, rgba(26, 53, 100, 0.5) 73.62%);
+  background: linear-gradient(178.78deg, var(--brand-dark) 1.05%, rgba(26, 53, 100, 0.5) 73.62%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -37,7 +37,7 @@
 
 .news-body .news-date {
   background: var(--brand);
-  color: #fff;
+  color: var(--bs-white);
   font-weight: 700;
   padding: 0.35em 0.65em;
   font-size: 0.75rem;
@@ -53,7 +53,7 @@
 }
 .news-date {
   background: var(--brand);
-  color: #fff;
+  color: var(--bs-white);
   font-weight: 700;
   padding: 0.35em 0.65em;
   font-size: 0.75rem;
@@ -70,21 +70,21 @@
 .news-body .section-lead.muted {
   font-size: 17px;         
   line-height: 1.5;
-  color: #1A3564;
+  color: var(--brand-dark);
   font-weight: 600;
 }
 
 .news-archive-body .section-lead.text-news-muted {
   font-size: 17px;         
   line-height: 1.5;
-  color: #1A3564;
+  color: var(--brand-dark);
   font-weight: 600;
 }
 
 .section-lead.muted {
   font-size: 17px;         
   line-height: 1.5;
-  color: #1A3564;
+  color: var(--brand-dark);
   font-weight: 600;
 }
 
@@ -102,7 +102,7 @@
 
   .news-card {
     width: 280px;
-    border-bottom: 2px solid #1A3564;
+    border-bottom: 2px solid var(--brand-dark);
 
   }
 }
@@ -111,7 +111,7 @@
 /* ---------- House layout area (new, tuned to match screenshot) ---------- */
 .house-layout {
   padding: 56px 0;
-  background: #fff;
+  background: var(--bs-white);
 }
 
 /* Big two-column layout: left narrow (fixed) and right flexible */
@@ -153,7 +153,7 @@
 .floor-tab[disabled] { opacity: .7; cursor: not-allowed; }
 .floor-tab.active {
   background: #15345a;   
-  color: #fff;
+  color: var(--bs-white);
   box-shadow: none;
 }
 
@@ -161,7 +161,7 @@
 .layout-image-wrap {
   width: 100%;
   max-width: 320px;     
-  background: #ffffff;
+  background: var(--bs-white);
   padding: 8px;         
   border: 6px solid #1e7acc; 
   border-radius: 2px;
@@ -172,7 +172,7 @@
   width: 100%;
   height: auto;
   object-fit: contain;
-  background: #fff;
+  background: var(--bs-white);
 }
 
 /* right column title - centered horizontally within the right column */
@@ -258,7 +258,7 @@
   position: relative;
   background-size: cover;
   background-position: center center;
-  color: #fff;
+  color: var(--bs-white);
   height: 400px;
   overflow: visible;
 }
@@ -313,7 +313,7 @@
   transition: transform .22s cubic-bezier(.2,.9,.2,1), background .18s ease, box-shadow .18s ease;
   cursor: pointer;
   text-align: left;
-  color: #fff;
+  color: var(--bs-white);
   vertical-align: middle;
 }
 
@@ -396,7 +396,7 @@
   display: none;
   position: relative;
   min-height: 420px; 
-  color: #fff;
+  color: var(--bs-white);
   width: 100%;
   box-sizing: border-box;
 }
@@ -435,7 +435,7 @@
 .hero-slider .slide-headline {
   font-size: clamp(1.6rem, 4vw, 3.6rem);
   margin: 0 0 12px 0;
-  color: #fff;
+  color: var(--bs-white);
   font-weight: 800;
   letter-spacing: -0.5px;
   text-transform: uppercase;
@@ -463,7 +463,7 @@
   border-radius: 50%;
   background: rgba(0,0,0,0.45);
   z-index: 10;
-  color: #fff;
+  color: var(--bs-white);
   border: none;
   cursor: pointer;
 }
@@ -490,7 +490,7 @@
   padding: 0;
   cursor: pointer;
 }
-.hero-slider .slider-dot.active { background: #fff; }
+.hero-slider .slider-dot.active { background: var(--bs-white); }
 
 /* Responsive make slides full height on large screens */
 @media (min-width: 992px) {
@@ -503,7 +503,7 @@
   position: fixed;
   display: none;
   z-index: 12000;
-  background: #fff;
+  background: var(--bs-white);
   border-radius: 8px;
   box-shadow: 0 14px 40px rgba(28, 42, 72, 0.14);
   border: 1px solid rgba(32,58,99,0.06);
@@ -553,7 +553,7 @@
 
 .nav-preview-card-item {
   display: block;
-  background: #fff;
+  background: var(--bs-white);
   border-radius: 6px;
   overflow: hidden;
   text-decoration: none;

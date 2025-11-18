@@ -3,9 +3,9 @@
 
 :root {
   --brand: #12325a;
-  --brand-dark: #1A3564;
+  --brand-dark: #1a3564;
   --brand-primary: #DD9E17;
-  --muted: #1A3564;
+  --muted: #1a3564;
   --heading-weight: 700;
   --body-weight: 400;
   --space-xs: 0.5rem;
@@ -24,7 +24,7 @@
   --fs-h3: clamp(1.1rem, 2.6vw, 1.5rem);
   --fs-body: 1.3rem;
   --leading-body: 1;
-  --footer-text: #fff;
+  --footer-text: var(--bs-white);
    --primary: #036F3C;
   --accent: #FFD100;
   --muted: #6c757d;

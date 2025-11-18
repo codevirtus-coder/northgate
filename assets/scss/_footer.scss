@@ -7,7 +7,7 @@
 }
 
 .site-footer .footer-heading {
-  color: #fff;
+  color: var(--bs-white);
   font-weight: 600;
   margin-bottom: .9rem;
   font-size: 1.05rem;
@@ -27,14 +27,14 @@
 }
 
 .site-footer {
-  background: #1A3564;
+  background: var(--brand-dark);
   color: var(--footer-text);
   
   padding-bottom: 0;
 }
 
 .site-footer .footer-heading {
-  color: #fff;
+  color: var(--bs-white);
   font-weight: 600;
   margin-bottom: .9rem;
   font-size: 1.05rem;
@@ -87,7 +87,7 @@ color: var(--brand-primary);
 
 .site-footer a:hover,
 .site-footer a:focus {
-  color: #fff;
+  color: var(--bs-white);
   text-decoration: underline;
 }
 
@@ -138,7 +138,7 @@ color: var(--brand-primary);
 }
 
 .social-icons a {
-  color: #ffffff;
+  color: var(--bs-white);
   font-size: 1.5rem;
   text-decoration: none;
   margin: 0 5px;

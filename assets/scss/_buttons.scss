@@ -118,7 +118,7 @@
 }
 
 .btn-secondary{
-  background:  #1A3564;
+  background:  var(--brand-dark);
   color: white;
   text-align: center;
   text-transform: uppercase;
@@ -131,7 +131,7 @@
 }
 
 .btn-secondary-2{
-  background:  #1A3564;
+  background:  var(--brand-dark);
   color: white;
   text-align: center;
   text-transform: uppercase;
@@ -164,11 +164,11 @@
 }
 
 .btn-primary {
-  color: #1A3564;
+  color: var(--brand-dark);
 }
 
 .btn-primary .btn-cta{
-  color: #1A3564;
+  color: var(--brand-dark);
   background:  white;
  text-transform: uppercase;
   display: inline-block;
