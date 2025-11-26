@@ -6,6 +6,9 @@ get_template_part('banners/allpage-banner');
 /* ---------- SETTINGS ---------- */
 $target_url = home_url('/residential');
 
+
+
+
 $groups = [
   '400' => [
     'title' => '400 sqm Stands',
@@ -59,7 +62,11 @@ $phases = [
 ];
 ?>
 
-<section class="container-fluid">
+<div class="container-fluid mt-2">
+  <?php the_content();?>
+</div>
+
+<!-- <section class="container-fluid">
      <div class="news-header">
       <div class="plan-picker mt-5" id="phasePicker" data-current="0" style="min-width:220px;">
         <h2 class="house-layout-title">SELECT PHASE</h2>
@@ -83,7 +90,7 @@ $phases = [
       <div id="phaseNotice" class="section-lead muted" style="margin-top:.5rem; display:none;"></div>
     </div>
 
-    <!-- GRID -->
+
     <div class="news-carousel" id="standsGrid">
       <?php foreach ($groups as $key => $g): ?>
         <?php $img = $g['image']; $excerpt = $g['intro']; ?>
@@ -103,8 +110,7 @@ $phases = [
       <?php endforeach; ?>
     </div>
 
-
-</section>
+</section> -->
 
 <style>
 

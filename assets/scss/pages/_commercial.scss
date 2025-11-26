@@ -25,6 +25,13 @@
 
 }
 
+/* When there is NO image: make text full width */
+.section-retail .retail-grid.retail-grid--no-image {
+  grid-template-columns: 1fr;
+}
+
+
+
 .eyebrow{
   font-size:.9rem;
   letter-spacing:.08em;

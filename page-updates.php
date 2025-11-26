@@ -1,7 +1,7 @@
 <?php
 
 get_header();
-get_template_part( 'banners/allpage-banner' );
+get_template_part('banners/allpage-banner');
 
 $paged = max( 1, get_query_var( 'paged' ), get_query_var( 'page' ) );
 
@@ -35,6 +35,7 @@ $news_query = new WP_Query( array(
           <span class="btn-secondary-2">READ MORE</span>
         </div>
       </a>
+      
   </a>
     </article>
         <?php endwhile; ?>

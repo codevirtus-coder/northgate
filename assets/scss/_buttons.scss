@@ -1,7 +1,6 @@
 .news-nav button {
   width: var(--control-size);
   height: var(--control-size);
-  border-radius: 50%;
   border: none;
   font-size: 1.8rem;
   font-weight: 500;
@@ -35,16 +34,13 @@
   font-weight: 700;
   letter-spacing: .6px;
   font-size: 12px;
-  border-radius: 2px;
   background: transparent;
 }
-
 
 .stand-cta { margin-top: 12px; }
 .btn-stand {
   border: 1px solid rgba(255,255,255,0.18);
   background: var(--brand-primary);
-  border-radius: 4px;
   color: var(--bs-white);
   text-decoration: none;
   text-transform: uppercase;
@@ -67,13 +63,13 @@
   background: #15345a;      
   color: var(--bs-white);
   border: none;
-  border-radius: 2px;
   font-weight: 700;
   letter-spacing: .6px;
   cursor: pointer;
   font-size: 15px;
   transition: transform .12s ease, box-shadow .12s ease;
 }
+
 .btn-signup:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(21,52,90,0.18); }
 
 .btn-ghost {
@@ -96,10 +92,8 @@
   text-decoration: none;
   font-weight: 700;
   letter-spacing: .6px;
-  border-radius: 4px;
   z-index: 2;
 }
-
 
 .btn-cta,
 .btn-cta-outline {
@@ -108,10 +102,7 @@
   text-decoration: none;
   font-weight: 700;
   letter-spacing: .6px;
-  border-radius: 4px;
 }
-
-
 
 .btn-cta {
   color: var(--bs-white);
@@ -127,6 +118,7 @@
   text-decoration: none;
   font-weight: 700;
   letter-spacing: .6px;
+  font-size: 1rem;
   z-index: 2;
 }
 
@@ -157,7 +149,6 @@
   background: var(--brand-primary);
 }
 
-
 .btn-secondary-2 {
   margin-top: auto;
   align-self: flex-start;
@@ -170,12 +161,15 @@
 .btn-primary .btn-cta{
   color: var(--brand-dark);
   background:  white;
- text-transform: uppercase;
+  text-transform: uppercase;
+  text-align: center;
+  text-transform: uppercase;
   display: inline-block;
-  padding: 1rem 3.2rem;
+  padding: 0.8rem 3.2rem;
   text-decoration: none;
   font-weight: 700;
   letter-spacing: .6px;
+  font-size: 1rem;
   z-index: 2;
 }
 

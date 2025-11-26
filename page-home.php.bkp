@@ -1,3 +1,5 @@
+edit the page and put a block but it not appering even if i delete that block that is hard coded<
+
 <?php
 
 
@@ -8,8 +10,94 @@ $mp4    = get_template_directory_uri() . '/assets/video/video.mp4';
 $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
 ?>
 
-<?php the_content();?>
-  
+<section class="container-fluid mx-auto hero-two-col">
+ 
+    <div class="hero-text">
+      <h2 class="section-heading">CREATING SMART, <br> SUSTAINABLE <br> COMMUNITIES</h2>
+      <p class="section-lead">
+        Our aim is an aesthetic that is unique, neither a typical urban style nor an imitation,
+        but rather a fresh contemporary look and feel, with a classical reference. We believe that
+        this will enhance the prosperity and community of the area, creating not just a beautiful
+        place to live in, but also a destination.
+      </p>
+      <a class="btn-secondary" href="<?php echo esc_url( home_url( '/about' ) ); ?>">LEARN MORE</a>
+    </div>
+
+    <div class="hero-image has-overlay">
+      <?php $hero_img = get_template_directory_uri() . '/assets/images/Rectangle 17.png'; ?>
+      <img src="<?php echo esc_url( $hero_img ); ?>" alt="Residential pool and courtyard">
+        <span class="img-overlay" aria-hidden="true"></span>
+    </div>
+
+</section>
+
+  <!-- LIFESTYLE / CLUSTER HOMES -->
+<section  class="">
+   <div class="lifestyle-section">
+    <div class="container-fluid">
+      <div class="lifestyle-header">
+        <h2 class="section-heading">EXPERIENCE THE <br> ULTIMATE LUXURY LIFESTYLE</h2>
+        <div class="lifestyle-intro">
+          <p class="section-lead">Northgate Estates is a visionary development designed to redefine urban living, leveraging <span class="section-lead-gradient">next-gen architecture, innovative technology, and sustainable design.</span></p>
+        </div>
+      </div>
+
+      <div class="lifestyle-grid">
+        <?php
+        $homes_query = new WP_Query( array(
+          'posts_per_page' => 4,
+          'category_name'  => 'homes',
+          'post_status'    => 'publish',
+          'ignore_sticky_posts' => true,
+        ) );
+
+        if ( $homes_query->have_posts() ) :
+          while ( $homes_query->have_posts() ) : $homes_query->the_post();
+            $img = get_the_post_thumbnail_url( get_the_ID(), 'large' ) ?: get_template_directory_uri() . '/assets/images/cluster-placeholder.jpg';
+            ?>
+            <article class="home-card" style="background-image:url('<?php echo esc_url( $img ); ?>')">
+              <a href="<?php the_permalink(); ?>" class="home-card-link">
+                <div class="home-card-caption">
+                  <strong><?php the_title(); ?></strong>
+                  <span class="muted">Neat Homes to fit your family</span>
+                </div>
+              </a>
+            </article>
+            <?php
+          endwhile;
+          wp_reset_postdata();
+        else:
+          $fallback = array(
+            'Group 11.png',
+            'Group 10.png',
+            'Group 9.png',
+            'Group 8.png',
+          );
+         $fallback = array('Group 11.png','Group 10.png','Group 9.png','Group 8.png');
+         $titles   = array('400 sqm Stands','500-600 sqm Stands','1000sqm Stands','Cluster Housing');
+
+        foreach ( $fallback as $i => $file ) {
+        $img   = get_template_directory_uri() . '/assets/images/' . $file;
+        $title = $titles[$i] ?? 'Homes';
+        ?>
+      <article class="home-card" style="background-image:url('<?php echo esc_url( $img ); ?>')">
+      <div class="home-card-caption">
+      <p class="home-card-caption-text"><?php echo esc_html( $title ); ?></p>
+      <p class="muted">Neat Homes to fit your family</p>
+       </div>
+       </article>
+       <?php
+          }
+        endif;
+        ?>
+      </div>
+
+      <div class="lifestyle-cta-wrap">
+        <a class="btn-secondary" href="<?php echo esc_url( home_url( '/residential' ) ); ?>">LEARN MORE</a>
+      </div>
+    </div>
+  </section>
+
   <?php
   $news_args = array(
     'post_type'           => 'post',
@@ -97,6 +185,7 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
         </div>
   </div>
 </section>
+
 
 <section class="partners-section">
   <div class="container-fluid">
@@ -238,5 +327,3 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
   else window.addEventListener('load', init);
 })();
 </script>
-
-

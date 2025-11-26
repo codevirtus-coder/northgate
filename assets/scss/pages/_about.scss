@@ -296,9 +296,9 @@ color: var(--bs-white);
 }
 
 @media (max-width: 991.98px) {
-  section {
-    padding: var(--space-md) var(--section-horizontal);
-  }
+  // section {
+  //   padding: var(--space-md) var(--section-horizontal);
+  // }
 
   .hero-two-col {
     grid-template-columns: 1fr;
@@ -329,9 +329,9 @@ color: var(--bs-white);
 }
 
 @media (max-width: 575.98px) {
-  section {
-    padding: var(--space-sm) var(--section-horizontal);
-  }
+  // section {
+  //   padding: var(--space-sm) var(--section-horizontal);
+  // }
 
   .section-heading {
     font-size: clamp(1.6rem, 9vw, 2.4rem);

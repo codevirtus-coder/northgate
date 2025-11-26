@@ -8,7 +8,6 @@ get_header();
 get_template_part( 'banners/allpage-banner' );
 
 $paged = max( 1, get_query_var( 'paged' ), get_query_var( 'page' ) );
-
 $news_query = new WP_Query( array(
   'post_type'           => 'post',
   'post_status'         => 'publish',
@@ -18,7 +17,6 @@ $news_query = new WP_Query( array(
   'ignore_sticky_posts' => true,
 ) );
 ?>
-
 <section class="container-fluid news-archive-section py-5">
     <?php if ( $news_query->have_posts() ) : ?>
       <div class="news-archive-grid">
@@ -39,7 +37,6 @@ $news_query = new WP_Query( array(
           <span class="btn-secondary-2">READ MORE</span>
         </div>
       </a>
-      
   </a>
     </article>
         <?php endwhile; ?>
@@ -67,7 +64,6 @@ $news_query = new WP_Query( array(
           </ul>
         <?php endif; ?>
       </nav>
-
     <?php else: ?>
       <div class="no-news mt-3">
         <p class="muted">No news found. Try publishing a post in the <strong>News</strong> category.</p>
@@ -76,7 +72,6 @@ $news_query = new WP_Query( array(
 
     <?php wp_reset_postdata(); ?>
 </section>
-
 
 <?php get_footer(); ?>
 

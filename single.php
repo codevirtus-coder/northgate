@@ -1,7 +1,7 @@
 <?php
 // single.php
 get_header();
-get_template_part( 'banners/news-banner' );
+get_template_part( 'banners/allpage-banner' );
 
 
 if ( have_posts() ) :

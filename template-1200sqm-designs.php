@@ -1,5 +1,5 @@
 <?php
-  /* Template Name: Designs - 400 Sqm */
+  /* Template Name: Designs - 1200 Sqm */
   get_header();
 ?>
 
@@ -9,7 +9,7 @@
 
   <?php
     // This allows users to navigate to different sizes via URL
-    $selected_size = isset($_GET['size']) ? sanitize_text_field($_GET['size']) : '400 Sqm';
+    $selected_size = isset($_GET['size']) ? sanitize_text_field($_GET['size']) : '1200 Sqm';
 
     $args = array(
       'post_type'      => 'designs',
@@ -144,7 +144,6 @@
         <?php endif; ?>
       </div>
     </div>
-
   </div>
 
   <section class="house-image-col mt-5 mb-5 container-fluid">
@@ -209,12 +208,51 @@
           <?php the_content(); ?>
         </p>
 
-        <ul class="stand-features" aria-label="Property features">
-          <li class="feature"><img class="feature-icon" src="<?php echo esc_url($icon_house ?? ''); ?>" alt="Property type icon" width="34" height="34" /></li>
-          <li class="feature"><img class="feature-icon" src="<?php echo esc_url($icon_tree ?? ''); ?>"  alt="Green spaces icon" width="34" height="34" /></li>
-          <li class="feature"><img class="feature-icon" src="<?php echo esc_url($icon_bed ?? ''); ?>"   alt="Accommodation icon" width="34" height="34" /></li>
-          <li class="feature"><img class="feature-icon" src="<?php echo esc_url($icon_pool ?? ''); ?>"  alt="Activity icon" width="34" height="34" /></li>
-        </ul>
+        <?php
+           $theme_uri = get_template_directory_uri();
+      ?>
+       
+      <ul class="stand-features" aria-label="Property features">
+       <li class="feature">
+       <img
+      class="feature-icon"
+      src="<?php echo esc_url( ! empty( $icon_house ) ? $icon_house : $theme_uri . '/assets/images/featured-icons-stands/property.png' ); ?>"
+      alt="Property type icon"
+      width="34"
+      height="34"
+    />
+  </li>
+
+  <li class="feature">
+    <img
+      class="feature-icon"
+      src="<?php echo esc_url( ! empty( $icon_tree ) ? $icon_tree : $theme_uri . '/assets/images/featured-icons-stands/green-spaces.png' ); ?>"
+      alt="Green spaces icon"
+      width="34"
+      height="34"
+    />
+  </li>
+
+  <li class="feature">
+    <img
+      class="feature-icon"
+      src="<?php echo esc_url( ! empty( $icon_bed ) ? $icon_bed : $theme_uri . '/assets/images/featured-icons-stands/accomodation.png' ); ?>"
+      alt="Accommodation icon"
+      width="34"
+      height="34"
+    />
+  </li>
+
+  <li class="feature">
+    <img
+      class="feature-icon"
+      src="<?php echo esc_url( ! empty( $icon_pool ) ? $icon_pool : $theme_uri . '/assets/images/featured-icons-stands/activity.png' ); ?>"
+      alt="Activity icon"
+      width="34"
+      height="34"
+    />
+  </li>
+</ul>
 
         <div class="stand-cta">
           <a class="btn-stand" href="https://portal.northgateestates.co.zw/" role="button" target="_blank" rel="noopener noreferrer">BUY STAND</a>
@@ -229,57 +267,112 @@
     </div>
   </section>
 
-  <section class="house-plan-section-main mb-5">
-    <div class="container-fluid">
-      <div class="lifestyle-header">
-        <h2 class="section-heading">View Other Residency</h2>
-      </div>
-      
-      <div class="lifestyle-grid">
-        <?php
-          $homes_query = new WP_Query(array(
-            'posts_per_page' => 4,
-            'category_name'  => 'homes',
-            'post_status'    => 'publish',
-            'ignore_sticky_posts' => true,
-          ));
-
-          if ($homes_query->have_posts()) :
-            while ($homes_query->have_posts()) : $homes_query->the_post();
-              $img = get_the_post_thumbnail_url(get_the_ID(), 'large') ?: get_template_directory_uri() . '/assets/images/cluster-placeholder.jpg';
-        ?>
-              <article class="home-card" style="background-image:url('<?php echo esc_url($img); ?>')">
-                <a href="<?php the_permalink(); ?>" class="home-card-link">
-                  <div class="home-card-caption">
-                    <strong><?php the_title(); ?></strong>
-                    <span class="muted">Neat Homes to fit your family</span>
-                  </div>
-                </a>
-              </article>
-        <?php
-            endwhile;
-            wp_reset_postdata();
-          else:
-            $fallback = array('Group 11.png','Group 10.png','Group 9.png','Group 8.png');
-            $titles   = array('400 sqm Stands','500-600 sqm Stands','1000sqm Stands','Cluster Housing');
-
-            foreach ($fallback as $i => $file) {
-              $img   = get_template_directory_uri() . '/assets/images/' . $file;
-              $title = $titles[$i] ?? 'Homes';
-        ?>
-              <article class="home-card" style="background-image:url('<?php echo esc_url($img); ?>')">
-                <div class="home-card-caption">
-                  <p class="home-card-caption-text"><?php echo esc_html($title); ?></p>
-                  <p class="muted">Neat Homes to fit your family</p>
-                </div>
-              </article>
-        <?php
-            }
-          endif;
-        ?>
-      </div>
+ <section class="house-plan-section-main mb-5">
+  <div class="container-fluid">
+    <div class="lifestyle-header">
+      <h2 class="section-heading">View Other Residency</h2>
     </div>
-  </section>
+    
+    <div class="lifestyle-grid">
+      <?php
+        // We already set this at the top of the template
+        // $selected_size = isset($_GET['size']) ? sanitize_text_field($_GET['size']) : '400 Sqm';
+
+        // Map design_sizes -> stand page URLs (same idea as header)
+        $size_links = array(
+          '400 Sqm'            => '/400-sqm-stands',
+          '600 Sqm'            => '/600-sqm-stands',
+          '1200 Sqm'           => '/1200-sqm-stands',
+          'Cluster/Apartments' => '/cluster-apartments',
+        );
+
+        // Query all designs to build stand cards
+        $stands_query = new WP_Query(array(
+          'post_type'      => 'designs',
+          'posts_per_page' => -1,
+          'post_status'    => 'publish',
+          'orderby'        => 'menu_order',
+          'order'          => 'ASC',
+        ));
+
+        // One card per unique size
+        $stand_cards = array();
+
+        if ( $stands_query->have_posts() ) {
+          while ( $stands_query->have_posts() ) {
+            $stands_query->the_post();
+
+            $size = carbon_get_post_meta( get_the_ID(), 'design_sizes' );
+            if ( ! $size ) {
+              continue;
+            }
+
+            // Don't show the current stand size
+            if ( $size === $selected_size ) {
+              continue;
+            }
+
+            // Already added a card for this size? Skip to keep it simple
+            if ( isset( $stand_cards[ $size ] ) ) {
+              continue;
+            }
+
+            // Build target URL
+            if ( isset( $size_links[ $size ] ) ) {
+              $url = home_url( $size_links[ $size ] );
+            } else {
+              $url = get_permalink();
+            }
+
+            // Thumbnail: first slider image > featured image > fallback
+            $slider_images = carbon_get_post_meta( get_the_ID(), 'design_slider' );
+            if ( ! empty( $slider_images ) && ! empty( $slider_images[0]['design_images'] ) ) {
+              $img = $slider_images[0]['design_images'];
+            } elseif ( has_post_thumbnail() ) {
+              $img = get_the_post_thumbnail_url( get_the_ID(), 'large' );
+            } else {
+              $img = get_template_directory_uri() . '/assets/images/stands/stand-placeholder.png';
+            }
+
+            $stand_cards[ $size ] = array(
+              'title' => $size . ' Stands',
+              'url'   => $url,
+              'img'   => $img,
+            );
+          }
+          wp_reset_postdata();
+        }
+
+        // Output cards
+        if ( ! empty( $stand_cards ) ) :
+          foreach ( $stand_cards as $card ) :
+      ?>
+            <article class="home-card" style="background-image:url('<?php echo esc_url( $card['img'] ); ?>')">
+  <!-- full-card clickable overlay -->
+        <a
+    href="<?php echo esc_url( $card['url'] ); ?>"
+    class="home-card-link"
+    aria-label="<?php echo esc_attr( $card['title'] ); ?>">
+        </a>
+
+  <!-- caption overlay (stays at the bottom as per your CSS) -->
+  <div class="home-card-caption">
+    <strong><?php echo esc_html( $card['title'] ); ?></strong>
+    <span class="muted">Neat Homes to fit your family</span>
+  </div>
+</article>
+
+      <?php
+          endforeach;
+        else :
+          // Optional: simple fallback if there are no designs
+          ?>
+          <p>No other stands found.</p>
+        <?php endif; ?>
+    </div>
+  </div>
+</section>
+
 
 </section> 
 

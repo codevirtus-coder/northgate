@@ -18,7 +18,6 @@
 
           $phone_opt  = function_exists('carbon_get_theme_option') ? carbon_get_theme_option('northgate_phone_1') : '';
           $phone      = $phone_opt ? $phone_opt : '+263 779 227 037';
-
       
           $tel_digits = preg_replace('/\D+/', '', $phone);
 
@@ -71,14 +70,13 @@
         </ul>
       </div>
 
-     
       <div class="col-6 col-md-2 mb-4 mb-md-0">
         <h5 class="footer-heading">Links</h5>
         <ul class="list-unstyled footer-links mb-0">
           <li><a href="<?php echo esc_url( home_url('/') ); ?>">Home</a></li>
-          <li><a href="<?php echo esc_url( home_url('/residential-2') ); ?>">Residential</a></li>
-          <li><a href="<?php echo esc_url( home_url('/how-to-buy') ); ?>">How to buy</a></li>
-          <li><a href="<?php echo esc_url( home_url('/view-homes') ); ?>">View Homes</a></li>
+          <li><a href="<?php echo esc_url( home_url('/residential') ); ?>">Residential</a></li>
+          <li><a href="<?php echo esc_url( home_url('/the-estates') ); ?>">The Estates</a></li>
+          <li><a href="<?php echo esc_url( home_url('/updates') ); ?>">Updates</a></li>
         </ul>
       </div>
 
