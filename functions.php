@@ -222,6 +222,9 @@ use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 use Carbon_Fields\Block;
 
+
+add_filter( 'wpcf7_load_css', '__return_false' );
+
 add_action('carbon_fields_register_fields', function () {
 
 	// Slider fields
@@ -240,6 +243,34 @@ add_action('carbon_fields_register_fields', function () {
 			Field::make('text',  'banner_headline', 'Banner Headline'),
 			Field::make('image', 'banner_image',    'Banner Image'),
 	]);
+
+
+    // Contact Settings (Theme Options)
+Container::make('theme_options', 'Contact Settings')
+    ->set_icon('dashicons-email') // optional
+    ->add_fields([
+        Field::make('text', 'northgate_contact_address', 'Address')
+            ->set_width(100)
+            ->set_attribute('placeholder', '123 Northgate Drive, Harare'),
+
+        Field::make('text', 'northgate_contact_email', 'Email')
+            ->set_width(50)
+            ->set_attribute('placeholder', 'info@northgate.co.zw'),
+
+        Field::make('text', 'northgate_contact_phone', 'Phone/Mobile')
+            ->set_width(50)
+            ->set_attribute('placeholder', '+263 77 000 0000'),
+
+        Field::make('text', 'northgate_contact_form_shortcode', 'Contact Form Shortcode')
+            ->set_width(100)
+            ->set_help_text('Paste your Contact Form 7 shortcode here, e.g. [contact-form-7 id="123" title="Contact Form"]'),
+
+        Field::make('textarea', 'northgate_contact_google_map', 'Google Map iframe')
+            ->set_width(100)
+            ->set_rows(7)
+            ->set_attribute('placeholder', 'Paste Google Maps <iframe> code here...')
+    ]);
+
 
 
 

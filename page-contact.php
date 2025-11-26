@@ -79,7 +79,6 @@ $signup_logo = get_stylesheet_directory_uri() . '/assets/images/contact-logo.png
 <!-- SIGNUP HERO -->
 <section class="signup-hero " role="region" aria-label="Stay updated signup" style="background-image: url('<?php echo esc_url( $hero_bg ); ?>')">
   <div class="hero-overlay" aria-hidden="true"></div>
-
   <div class="container-fluid hero-inner">
     <div class="">
       <h1 class="hero-title">Do You Want To<br>Stay Updated?</h1>
@@ -89,30 +88,27 @@ $signup_logo = get_stylesheet_directory_uri() . '/assets/images/contact-logo.png
       </p>
     </div>
 
-    <aside class="hero-signup" aria-labelledby="signup-title">
+        <aside class="hero-signup" aria-labelledby="signup-title">
       <div class="signup-card">
         <div class="signup-top">
-          <img src="<?php echo esc_url( $signup_logo ); ?>" alt="Northgate Estates" class="signup-logo">
-          <p class="section-lead">Our Nicklaus-design championship golf course offers a fantastic experience for golfers of all levels.</p>
+          <img src="<?php echo esc_url( $signup_logo ); ?>"
+               alt="Northgate Estates"
+               class="signup-logo">
+          <p class="section-lead">
+            Our Nicklaus-design championship golf course offers a fantastic experience
+            for golfers of all levels.
+          </p>
         </div>
 
-        <form id="signup-form" class="signup-form" method="post" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>">
-        <input type="hidden" name="action" value="newsletter_signup">
-
-       <label for="name" class="sr-only">Name</label>
-       <input id="name" name="name" type="text" placeholder="Name Surname" required>
-
-       <label for="email" class="sr-only">Email</label>
-       <input id="email" name="email" type="email" placeholder="Email" required>
-
-       <label for="message" class="sr-only">Message</label>
-       <textarea id="message" name="message" placeholder="Message (optional)" rows="4"></textarea>
-
-       <button type="submit" class="btn-signup">SEND</button>
-       </form>
+        <?php echo do_shortcode(
+          '[contact-form-7 id="154fc83" title="Contact form" html_id="signup-form" html_class="signup-form"]'
+        ); ?>
 
       </div>
     </aside>
+
+
+
   </div>
 </section>
 

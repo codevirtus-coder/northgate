@@ -9,11 +9,11 @@
 }
 
 .news-archive-card {
-  background: var(--bs-white);
+  background: #fff;
   border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(12, 32, 60, 0.05);
-  border-bottom: 2px solid var(--brand-dark);
+  border-bottom: 2px solid #1A3564;
   transition: transform .28s ease, box-shadow .28s ease;
 }
 
