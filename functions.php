@@ -75,14 +75,42 @@ add_filter( 'block_categories_all', function( $categories, $post ) {
 }, 10, 2 );
 
 
-
-
 /* -----------------------------------------------------------
  * 2) Assets (Bootstrap, Icons, Google Font, Theme CSS, Bootstrap JS)
  * ----------------------------------------------------------- */
 add_action('wp_enqueue_scripts', function () {
-	wp_enqueue_style('northgate-style', get_stylesheet_uri());
-	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', [], null, true);
+    wp_enqueue_style('northgate-style', get_stylesheet_uri());
+
+    wp_enqueue_style(
+        'swiper-css',
+        get_template_directory_uri() . '/assets/css/swiper-bundle.min.css',
+        [],
+        null
+    );
+
+    wp_enqueue_script(
+        'bootstrap-js',
+        get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js',
+        [],
+        null,
+        true
+    );
+
+    wp_enqueue_script(
+        'swiper',
+        get_template_directory_uri() . '/assets/js/swiper-bundle.min.js',
+        [],
+        '1.5.5',
+        true
+    );
+
+    wp_enqueue_script(
+        'northgate-app',
+        get_template_directory_uri() . '/assets/js/sliders.js',
+        ['swiper'],
+        null,
+        true
+    );
 }, 20);
 
 
@@ -114,8 +142,6 @@ add_filter('nav_menu_link_attributes', function ($atts, $item, $args) {
 	}
 	return $atts;
 }, 10, 3);
-
-
 
 
 
@@ -171,47 +197,47 @@ add_action('init', function () {
 /* -----------------------------------------------------------
  * 6) Nav Preview script + data
  * ----------------------------------------------------------- */
-add_action('wp_enqueue_scripts', function () {
-	$handle = 'nav-card-hover';
-	$path   = get_stylesheet_directory() . '/assets/js/nav-card-hover.js';
+// add_action('wp_enqueue_scripts', function () {
+// 	$handle = 'nav-card-hover';
+// 	$path   = get_stylesheet_directory() . '/assets/js/nav-card-hover.js';
 
-	wp_enqueue_script(
-		$handle,
-		get_stylesheet_directory_uri() . '/assets/js/nav-card-hover.js',
-		[],
-		file_exists($path) ? filemtime($path) : false,
-		true
-	);
+// 	wp_enqueue_script(
+// 		$handle,
+// 		get_stylesheet_directory_uri() . '/assets/js/nav-card-hover.js',
+// 		[],
+// 		file_exists($path) ? filemtime($path) : false,
+// 		true
+// 	);
 
-	$preview_data = [
-		'residential' => [
-			'items' => [
-				[
-					'title' => '400 sqm Stands',
-					'link'  => site_url('/residential-2'),
-					'image' => get_stylesheet_directory_uri() . '/assets/images/stands/stand-1.png',
-				],
-				[
-					'title' => '500-600 sqm Stands',
-					'link'  => site_url('/residential-2'),
-					'image' => get_stylesheet_directory_uri() . '/assets/images/stands/stand-2.png',
-				],
-				[
-					'title' => '1200 sqm Stands',
-					'link'  => site_url('/residential-2'),
-					'image' => get_stylesheet_directory_uri() . '/assets/images/stands/stand-3.png',
-				],
-				[
-					'title' => 'Cluster Housing / Garden Apartments',
-					'link'  => site_url('/residential-2'),
-					'image' => get_stylesheet_directory_uri() . '/assets/images/stands/stand-4.png',
-				],
-			],
-		],
-	];
+// 	$preview_data = [
+// 		'residential' => [
+// 			'items' => [
+// 				[
+// 					'title' => '400 sqm Stands',
+// 					'link'  => site_url('/residential-2'),
+// 					'image' => get_stylesheet_directory_uri() . '/assets/images/stands/stand-1.png',
+// 				],
+// 				[
+// 					'title' => '500-600 sqm Stands',
+// 					'link'  => site_url('/residential-2'),
+// 					'image' => get_stylesheet_directory_uri() . '/assets/images/stands/stand-2.png',
+// 				],
+// 				[
+// 					'title' => '1200 sqm Stands',
+// 					'link'  => site_url('/residential-2'),
+// 					'image' => get_stylesheet_directory_uri() . '/assets/images/stands/stand-3.png',
+// 				],
+// 				[
+// 					'title' => 'Cluster Housing / Garden Apartments',
+// 					'link'  => site_url('/residential-2'),
+// 					'image' => get_stylesheet_directory_uri() . '/assets/images/stands/stand-4.png',
+// 				],
+// 			],
+// 		],
+// 	];
 
-	wp_localize_script($handle, 'navPreviewData', $preview_data);
-}, 25);
+// 	wp_localize_script($handle, 'navPreviewData', $preview_data);
+// }, 25);
 
 
 
@@ -995,7 +1021,6 @@ Block::make( __( 'Retail / Light Industrial', 'northgate' ) )
         <?php
     } );
 
-
 // Stands Block 
 Block::make( __( 'Stands Grid', 'northgate' ) )
     ->add_fields( array(
@@ -1091,6 +1116,37 @@ Block::make( __( 'Stands Grid', 'northgate' ) )
     });
 });
 
+
+function zifa_website_partners_slider() {
+	register_post_type( 'partners-slider',
+		array(
+			'labels' => array(
+				'name' => __( 'Partners Slider' ),
+				'singular_name' => __( 'Partners Slider' ),
+				'add_new_item' => 'Add New Partners Slider',
+				'add_new' => __('Add New Partners Slider'),
+				'attributes' => __( 'Partners Slider Attributes', 'text_domain' ),
+			),
+			'public' => true,
+            // 'hierarchical' => false, // Enables parent-child relationships
+            // 'publicly_queryable' => true, // explicitly set if needed
+            // 'has_archive'        => true,
+            // 'show_in_rest'       => true, // Enables Gutenberg support
+			'rewrite' => array(
+				'slug' => 'partners-slider'
+            ),
+			'supports' => array( 
+                'title',
+                'thumbnail',
+                // 'editor', // Content editor
+                // 'page-attributes' // Page attributes allow parent assignment
+            ), 
+			'menu_position' => 5,
+			'menu_icon' => __('dashicons-images-alt2')
+		)
+	);
+}
+add_action( 'init', 'zifa_website_partners_slider' );
 
 
 // Front-end: dequeue global + block theme styles

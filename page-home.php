@@ -55,8 +55,10 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
 
             <!-- SHOW the excerpt (this was commented out) -->
             <p class="section-lead muted"><?php echo esc_html( $excerpt ); ?></p>
-
-            <p class="btn-secondary">READ MORE</p>
+           <div>
+                  <p class="btn-secondary">READ MORE</p>
+           </div>
+         
           </div>
          </a>
       </article>
@@ -98,40 +100,48 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
   </div>
 </section>
 
-<section class="partners-section">
-  <div class="container-fluid">
-    <div class="row align-items-center">
-      <div class="col-lg-6 col-md-12 partners-left">
-        <h3 class="partners-title">OUR PROUD<br><span>PARTNERS</span></h3>
-        <!-- <div class="partners-line d-block mt-8" aria-hidden="true"></div> -->
-         <?php $vector_img = get_template_directory_uri() . '/assets/images/icons/Vector 4.png'; ?>
-         <img src="<?php echo esc_url( $vector_img ); ?>" alt="partners line decorative" class="partners-decorative" />
-      </div>
-      <div class="col-lg-6 col-md-12 partners-right">
-        <div class="partners-grid">
-          <?php
-          $partners = array(
-            'partner-1.png',
-            'partner-2.png',
-            'partner-3.png',
-            'partner-4.png',
-            'partner-5.png',
+<section class="our-partners">
+	<div class="container-fluid">
+		<section class="row">
+			<div class="col-12">
+				  <h3 class="partners-title">OUR PROUD PARTNERS</h3>
+			</div>
+		</section>
+
+<section class="row">
+  <div class="col-12">
+    <div class="zifaPartners swiper">
+      <div class="swiper-wrapper">
+        <?php
+          $args = array(
+            'post_type'      => 'partners-slider',
+            'posts_per_page' => -1,
+            'orderby'        => 'menu_order',
+            'order'          => 'ASC',
           );
-          foreach ( $partners as $logo ) {
-            $logo_url = get_template_directory_uri() . '/assets/images/partners/' . $logo;
-            ?>
-            <div class="partner-item">
-              <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( pathinfo( $logo, PATHINFO_FILENAME ) ); ?> logo" />
+          $partner_query = new WP_Query($args);
+        ?>
+
+        <?php if ( $partner_query->have_posts() ) : ?>
+          <?php while ( $partner_query->have_posts() ) : $partner_query->the_post(); ?>
+            <div class="swiper-slide">
+              <img
+                class="partner-logo"
+                src="<?php echo esc_url( get_the_post_thumbnail_url() ); ?>"
+                alt="<?php the_title(); ?>"
+              />
             </div>
-            <?php
-          }
-          ?>
-        </div>
+          <?php endwhile; ?>
+          <?php wp_reset_postdata(); ?>
+        <?php endif; ?>
       </div>
     </div>
   </div>
 </section>
 
+
+	</div>
+</section>
 
 
 <div class="video-hero js-video-wrap">
@@ -237,6 +247,8 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
   if (document.readyState === 'complete') init();
   else window.addEventListener('load', init);
 })();
+
+
 </script>
 
 

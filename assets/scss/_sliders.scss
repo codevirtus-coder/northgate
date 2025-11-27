@@ -1,0 +1,146 @@
+//
+// Hero Swiper
+//
+.zifaPartners.swiper {
+  width: 100%;
+  height: auto;
+  padding: 20px 0 40px 0;
+
+  .swiper-wrapper {
+    align-items: center;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #dee2e6; 
+    border-radius: 5px;
+  }
+
+  img.img-thumbnail {
+    display: block;
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
+
+    padding: 0;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .slider-content {
+    position: absolute;
+    bottom: 20%;
+    z-index: 2;
+
+    h1 {
+      color: var(--bs-black);
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .card-text {
+      margin-bottom: 30px;
+    }
+  }
+
+  .swiper-pagination-bullet {
+    width: 25px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 15px;
+    background: var(--bs-gray-300);
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: var(--swiper-pagination-color, var(--swiper-theme-color));
+    width: 40px;
+    border-radius: 15px;
+  }
+
+  --swiper-pagination-color: var(--bs-secondary);
+  --swiper-pagination-bottom: 30px;
+  --swiper-pagination-bullet-horizontal-gap: 8px;
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .swiperHome.swiper {
+    height: 500px;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .swiperHome.swiper {
+    height: 700px;
+  }
+}
+
+
+//
+// Partners Swiper
+//
+.zifaPartners.swiper {
+  width: 100%;
+  height: auto;
+  padding: 20px 0 40px 0;
+
+  .swiper-wrapper {
+    align-items: center;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;  
+    align-items: center;      
+  }
+
+  .swiper-slide img {
+    display: block;
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
+
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+    margin: 0 auto;
+  }
+
+
+  .swiper-pagination-bullet {
+    width: 25px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 15px;
+    background: var(--bs-gray-300);
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: var(--swiper-pagination-color, var(--swiper-theme-color));
+    width: 40px;
+    border-radius: 15px;
+  }
+
+  --swiper-pagination-color: var(--bs-secondary);
+  --swiper-pagination-bottom: 0;
+  --swiper-pagination-bullet-horizontal-gap: 8px;
+}

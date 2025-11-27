@@ -1,28 +1,24 @@
 /* assets/scss/sections/_banner.scss */
 
 
-
-
 /* Banner / Hero */
 .site-banner {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  color: var(--bs-white);
-
-  .carousel {
+   .carousel {
     height: 450px;
 
     .carousel-inner { height: 100%; width: 100%; }
 
     .carousel-item {
-      transition: transform .2s ease-in-out;
+      transition: transform 1s ease-in-out;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       will-change: transform;
     }
 
-    &.carousel-fade .carousel-item { transition: opacity .2s ease-in-out; }
+    &.carousel-fade .carousel-item {
+      transition: opacity 1s ease-in-out;
+    }
+  
   }
 
   .banner-slider {

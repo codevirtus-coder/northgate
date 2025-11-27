@@ -1,0 +1,20 @@
+.our-partners {
+  padding: 3rem 0;
+
+  .zifaPartners {
+    width: 100%;
+    padding: 2rem 0;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
+  }
+}

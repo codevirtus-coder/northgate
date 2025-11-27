@@ -3,7 +3,6 @@
  * banner.php
  */
 
-
 $static_bg = get_stylesheet_directory_uri() . '/img/banner.png';
 
 if ( is_singular() && has_post_thumbnail() ) {
