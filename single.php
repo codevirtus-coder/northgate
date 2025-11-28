@@ -6,7 +6,7 @@ get_template_part( 'banners/allpage-banner' );
 
 if ( have_posts() ) :
   while ( have_posts() ) : the_post(); ?>
-    <main class="container py-5">
+    <main class="container-fluid py-5">
       <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
         <header class="post-header">
           <!-- <h1><?php the_title(); ?></h1> -->

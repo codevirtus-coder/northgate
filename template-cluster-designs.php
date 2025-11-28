@@ -67,7 +67,7 @@
           'plan_img'    => carbon_get_post_meta(get_the_ID(), 'design_floor_plan'),
           'items'       => $items,
           'total_label' => 'Total Price',
-          'total_price' => 'usd$ ' . carbon_get_post_meta(get_the_ID(), 'design_price'),
+          'total_price' => 'USD ' . carbon_get_post_meta(get_the_ID(), 'design_price'),
           'stand_group' => carbon_get_post_meta(get_the_ID(), 'design_sizes'),
           'slider'      => $slider_images
         );

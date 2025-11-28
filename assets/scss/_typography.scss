@@ -28,7 +28,7 @@
   --fs-h1: clamp(2rem, 5vw, 4rem);
   --fs-h2: clamp(1.6rem, 4vw, 3rem);
   --fs-h3: clamp(1.1rem, 2.6vw, 1.5rem);
-  --fs-body: 1.3rem;
+  --fs-body: 1.2rem;
   --leading-body: 1;
   --footer-text: #fff;
    --primary: #036F3C;
@@ -96,7 +96,7 @@ h3 { font-size: 1.8rem; }
    ============================ */
 
 p {
-  font-size: var(--fs-body);
+  font-size: 1rem;
   line-height: 1.6;
   margin: 0 0 1rem;
 }

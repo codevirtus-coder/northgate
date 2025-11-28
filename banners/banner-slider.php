@@ -1,9 +1,9 @@
 <?php
 /**
  * banner.php
- */
+*/
 
-$static_bg = get_stylesheet_directory_uri() . '/img/banner.png';
+$static_bg = get_stylesheet_directory_uri() . '/assets/img/banner.png';
 
 if ( is_singular() && has_post_thumbnail() ) {
     $thumb = get_the_post_thumbnail_url( get_the_ID(), 'full' );
@@ -27,7 +27,6 @@ $slider_args = array(
 );
 
 $slides = get_posts( $slider_args );
-
 
 $default_headline = 'Where life finds its space';
 $global_headline  = function_exists( 'carbon_get_theme_option' ) ? carbon_get_theme_option( 'northgate_headline' ) : '';

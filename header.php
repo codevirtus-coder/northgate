@@ -90,11 +90,15 @@
 
 <?php
 $preview_data = [];
-$res_items    = [];
+
+// =========================================
+// 1) Residential: designs → stands preview
+// =========================================
+$res_items = [];
 
 $res_query = new WP_Query([
   'post_type'      => 'designs',
-  'posts_per_page' => 4,
+  'posts_per_page' => -1,
   'post_status'    => 'publish',
   'orderby'        => 'menu_order',
   'order'          => 'ASC',
@@ -113,14 +117,14 @@ if ( $res_query->have_posts() ) {
 
     $size = carbon_get_post_meta( get_the_ID(), 'design_sizes' );
 
-  
+    // Map each size to its stands page
     if ( $size && isset( $size_links[ $size ] ) ) {
       $target_url = home_url( $size_links[ $size ] );
     } else {
       $target_url = get_permalink();
     }
 
-  
+    // Thumb: first slider image > featured image > fallback
     $slider_images = carbon_get_post_meta( get_the_ID(), 'design_slider' );
     if ( ! empty( $slider_images ) && ! empty( $slider_images[0]['design_images'] ) ) {
       $thumb = $slider_images[0]['design_images'];
@@ -140,7 +144,56 @@ if ( $res_query->have_posts() ) {
 }
 
 if ( $res_items ) {
+  // This key must match your nav label "Residential"
   $preview_data['residential'] = ['items' => $res_items];
+}
+
+
+
+// =========================================
+// 2) The Estates: shops → estates preview
+// =========================================
+$shop_items = [];
+
+$shops_query = new WP_Query([
+  'post_type'      => 'shops',
+  'posts_per_page' => -1,
+  'post_status'    => 'publish',
+  'orderby'        => 'menu_order',
+  'order'          => 'ASC',
+]);
+
+if ( $shops_query->have_posts() ) {
+  while ( $shops_query->have_posts() ) {
+    $shops_query->the_post();
+
+// Thumb: featured image or fallback
+if ( has_post_thumbnail() ) {
+  $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' );
+} else {
+  $thumb = get_stylesheet_directory_uri() . '/assets/images/stands/stand-placeholder.png';
+}
+
+    $title = get_the_title();
+    $slug  = sanitize_title( $title );
+
+
+    $shop_items[] = [
+      'title' => get_the_title(),   
+       'link'  => home_url( '/' . $slug . '/' ),  
+      'image' => $thumb,
+    ];
+  }
+  wp_reset_postdata();
+}
+
+if ( $shop_items ) {
+  // This key must match your menu label text.
+  // If your nav item is literally "The Estates", this is correct:
+  $preview_data['the estates'] = ['items' => $shop_items];
+
+  // If your nav item is "Estates" only, use this instead:
+  // $preview_data['estates'] = ['items' => $shop_items];
 }
 ?>
 
@@ -189,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
       a.className = 'nav-preview-card-item';
       a.innerHTML = `
         <img class="card-thumb" src="${item.image || ''}" alt="${item.title || ''}">
-        <span class="card-title">${item.title || ''} Stands</span>
+        <span class="card-title">${item.title || ''}</span>
       `;
       wrap.appendChild(a);
     });
@@ -235,13 +288,13 @@ document.addEventListener('DOMContentLoaded', function () {
   card.addEventListener('mouseenter', clearHide);
   card.addEventListener('mouseleave', scheduleHide);
 
-  // ⬇️ NEW: hide when scrolling
+  // Hide when scrolling
   window.addEventListener('scroll', function () {
     clearHide();
     hideCard();
   }, { passive: true });
 
-  // ⬇️ NEW: hide when clicking anywhere outside nav or card
+  // Hide when clicking outside
   document.addEventListener('click', function (e) {
     if (!card.classList.contains('show')) return;
 
@@ -263,8 +316,3 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
-
-
-<?php
-
-?>

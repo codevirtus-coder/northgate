@@ -25,6 +25,11 @@ add_action('after_setup_theme', function () {
 });
 
 
+add_action( 'init', function () {
+    add_post_type_support( 'page', 'title' );
+    add_post_type_support( 'post', 'title' );
+}, 20 );
+
 
 
 add_action('admin_enqueue_scripts', function () {
@@ -115,8 +120,6 @@ add_action('wp_enqueue_scripts', function () {
 
 
 
-
-
 /* -----------------------------------------------------------
  * 3) Menu item Bootstrap classes
  * ----------------------------------------------------------- */
@@ -144,7 +147,6 @@ add_filter('nav_menu_link_attributes', function ($atts, $item, $args) {
 }, 10, 3);
 
 
-
 /* -----------------------------------------------------------
  * 4) Slider CPT 
  * ----------------------------------------------------------- */
@@ -167,9 +169,6 @@ add_action('init', function () {
 });
 
 
-
-
-
 /* -----------------------------------------------------------
  * 5) Designs CPT 
  * ----------------------------------------------------------- */
@@ -189,8 +188,6 @@ add_action('init', function () {
 		'menu_icon'     => 'dashicons-images-alt2',
 	]);
 });
-
-
 
 
 
@@ -264,16 +261,15 @@ add_action('carbon_fields_register_fields', function () {
 
 	// Post/Page Banner
 	Container::make('post_meta', 'Banner')
-		->where('post_type', '=', 'page')
+		->where( 'post_type', 'IN', [ 'page', 'post' ] )
 		->add_fields([
 			Field::make('text',  'banner_headline', 'Banner Headline'),
 			Field::make('image', 'banner_image',    'Banner Image'),
 	]);
 
-
     // Contact Settings (Theme Options)
 Container::make('theme_options', 'Contact Settings')
-    ->set_icon('dashicons-email') // optional
+    ->set_icon('dashicons-email') 
     ->add_fields([
         Field::make('text', 'northgate_contact_address', 'Address')
             ->set_width(100)
@@ -296,8 +292,6 @@ Container::make('theme_options', 'Contact Settings')
             ->set_rows(7)
             ->set_attribute('placeholder', 'Paste Google Maps <iframe> code here...')
     ]);
-
-
 
 
 	// Designs
@@ -339,6 +333,29 @@ Container::make('theme_options', 'Contact Settings')
 					Field::make( 'image', 'design_images', __( 'Add Image' ) )
 						->set_value_type( 'url' )
 			]),      
+    ] );
+
+
+    
+Container::make( 'post_meta', 'Shop Details' )
+    ->where( 'post_type', '=', 'shops' )
+    ->add_fields( [
+        // Dropdown like "Land Space" but for shops
+        Field::make( 'select', 'shop_group', 'Shop' )
+            ->set_width( 50 )
+            ->set_options( [
+                'PLAY'   => 'PLAY',
+                'SHOP'   => 'SHOP',
+                'WORK'   => 'WORK',
+                'STAY'   => 'STAY',
+                'HEALTH' => 'HEALTH',
+                'TRAVEL' => 'TRAVEL',
+            ] ),
+
+        Field::make( 'textarea', 'shop_intro', 'Short Intro / Tagline' )
+            ->set_rows( 3 )
+            ->set_width( 100 )
+            ->set_help_text( 'Optional short text about this shop. You can decide later how to show it on the frontend.' ),
     ] );
 
 
@@ -1176,6 +1193,32 @@ add_action('enqueue_block_editor_assets', function () {
     }
 }, 100);
 
+
+/* -----------------------------------------------------------
+ Shops CPT 
+ * ----------------------------------------------------------- */
+add_action('init', function () {
+    register_post_type('shops', [
+        'labels' => [
+            'name'          => __('Shops', 'northgate'),
+            'singular_name' => __('Shop', 'northgate'),
+            'add_new_item'  => __('Add New Shop', 'northgate'),
+            'add_new'       => __('Add New Shop', 'northgate'),
+        ],
+        'public'        => true,
+        'hierarchical'  => false,
+        'rewrite'       => ['slug' => 'shops'],
+        'supports'      => ['title', 'thumbnail'],
+        'menu_position' => 7,
+        'menu_icon'     => 'dashicons-store',
+    ]);
+});
+
+// Make sure pages and posts always have a title field in the editor.
+add_action( 'init', function () {
+    add_post_type_support( 'page', 'title' );
+    add_post_type_support( 'post', 'title' );
+}, 20 );
 
 
 

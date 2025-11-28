@@ -10,9 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-
-$default_bg = get_stylesheet_directory_uri() . '/img/banner.png';
-
+$default_bg = get_stylesheet_directory_uri() . '';
 
 function rv_get_image_url( $val ) {
     if ( ! $val ) {
@@ -32,10 +30,8 @@ function rv_get_image_url( $val ) {
     return '';
 }
 
-
 $bg_image = $default_bg;
 $headline = 'A House Plan that suits you';
-
 
 $queried_id = get_queried_object_id();
 $queried_obj = get_queried_object();
@@ -59,7 +55,6 @@ if ( is_front_page() || is_home() ) {
         $headline = get_bloginfo( 'name' );
     }
 }
-
 
 elseif ( is_singular() ) {
     
@@ -98,7 +93,6 @@ elseif ( is_singular() ) {
     }
 }
 
-
 elseif ( is_category() || is_tag() || is_tax() ) {
     $term_head = '';
     $term_img = '';
@@ -122,7 +116,6 @@ elseif ( is_category() || is_tag() || is_tax() ) {
     }
 }
 
-
 elseif ( is_post_type_archive() || is_archive() ) {
    
     $headline = post_type_archive_title( '', false ) ?: get_the_archive_title();
@@ -134,7 +127,6 @@ elseif ( is_post_type_archive() || is_archive() ) {
     }
 }
 
-
 elseif ( is_404() ) {
     $headline = 'Page Not Found';
     if ( function_exists( 'carbon_get_theme_option' ) ) {
@@ -143,11 +135,11 @@ elseif ( is_404() ) {
     }
 }
 
-
 if ( empty( $bg_image ) ) {
     $bg_image = $default_bg;
 }
 ?>
+
 <section class="site-banner hero-centered" role="banner" aria-label="<?php echo esc_attr( $headline ); ?>" style="background-image: url('<?php echo esc_url( $bg_image ); ?>');">
   <div class="overlay" aria-hidden="true"></div>
 

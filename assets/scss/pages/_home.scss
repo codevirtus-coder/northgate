@@ -161,6 +161,14 @@
   margin-top: var(--space-md);
 }
 
+.featured-tiles .tile,
+.featured-tiles .tile:hover,
+.featured-tiles .tile:focus {
+  border-bottom: 0 !important;
+  text-decoration: none !important;
+}
+
+
 @media (max-width: 991.98px) {
   .lifestyle-header {
     flex-direction: column;
@@ -239,6 +247,7 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   padding-bottom: var(--space-xs);
+   align-items: stretch; 
 }
 
 .news-carousel::-webkit-scrollbar {
@@ -259,6 +268,7 @@
   border-bottom: 2px solid #1A3564; 
   padding-bottom: 10px;
   margin-bottom: 15px;
+  display: flex;     
 }
 
 .news-card:hover {
@@ -282,7 +292,12 @@
   min-width: 0;
 }
 
-
+.news-card > a {
+  display: flex;                 
+  flex-direction: column;     
+  height: 100%;                
+  text-decoration: none;
+}
 
 
 @media (min-width: 768px) {
@@ -293,7 +308,6 @@
   }
 }
 
-
 @media (min-width: 1024px) {
   .news-card,
   .news-card-property {
@@ -301,7 +315,6 @@
     width: calc(33.333% - 0.7333rem);
   }
 }
-
 
 /* Mobile: one-card slider */
 @media (max-width: 575.98px) {
@@ -326,8 +339,6 @@
   }
 }
 
-
-
 /* Lifestyle responsiveness (works without a wrapper) */
 @media (max-width: 991.98px) {
   .lifestyle-header {
@@ -351,9 +362,6 @@
     grid-template-columns: 1fr;
   }
 }
-
-
-
 
 .news-thumb {
   height: 250px;
@@ -395,11 +403,15 @@
   font-size: .9rem;
 }
 
+.news-body .btn-news-bottom {
+  margin-top: auto;       
+  align-self: flex-start;  
+}
+
 
 .muted {
   color: var(--muted);
 }
-
 
 /* ===== Featured tiles (vertical tiles band) =====*/
 

@@ -54,15 +54,14 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
             </time>
 
             <!-- SHOW the excerpt (this was commented out) -->
-            <p class="section-lead muted"><?php echo esc_html( $excerpt ); ?></p>
-           <div>
+            <p class="section-lead muted mb-4"><?php echo esc_html( $excerpt ); ?></p>
+           <div class ="btn-news-bottom">
                   <p class="btn-secondary">READ MORE</p>
            </div>
          
           </div>
          </a>
       </article>
-
             <?php
           endwhile;
           wp_reset_postdata();
@@ -72,36 +71,56 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
     </div>
   </section>
 
-
 <section class="featured-tiles" aria-label="Featured categories">
-  <div class="container-fluid-fluid"> 
-        <div class="tiles-grid">
-          <?php
-          $tiles = array(
-            array('img' => 'icon-4.png', 'label' => 'PLAY'),
-            array('img' => 'icon-6.png', 'label' => 'SHOP'),
-            array('img' => 'icon-5.png', 'label' => 'WORK'),
-            array('img' => 'icon-4.png', 'label' => 'STAY'),
-            array('img' => 'icon-5.png', 'label' => 'HEALTH'),
-            array('img' => 'icon-6.png', 'label' => 'TRAVEL'),
-            array('img' => 'icon-7.png', 'label' => 'TRAVEL'),
-          );
-          foreach ( $tiles as $t ) {
-            $img_url = get_template_directory_uri() . '/assets/images/icons/' . $t['img'];
-            ?>
-            <div class="tile">
-              <img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $t['label'] ); ?>" class="tile-image" />
-              <p class="tile-label"><?php echo esc_html( $t['label'] ); ?></p>
-            </div>
-            <?php
-          }
-          ?>
-        </div>
+  <div class="container-fluid"> 
+    <div class="tiles-grid">
+      <?php
+      $tiles = array(
+        array('img' => 'icon-7.png', 'label' => 'PLAY'),
+        array('img' => 'icon-6.png', 'label' => 'SHOP'),
+        array('img' => 'icon-5.png', 'label' => 'WORK'),
+        array('img' => 'icon-4.png', 'label' => 'STAY'),
+        array('img' => 'icon-8.png', 'label' => 'HEALTH'),
+        array('img' => 'icon-9.png', 'label' => 'TRAVEL'),
+      );
+
+      foreach ( $tiles as $t ) {
+        $img_url = get_template_directory_uri() . '/assets/images/icons/' . $t['img'];
+
+        // Make slug from label: PLAY -> play, etc
+        $slug = sanitize_title( $t['label'] );
+
+        // Try to find a real page with that slug
+        $page = get_page_by_path( $slug );
+
+        if ( $page ) {
+          $url = get_permalink( $page->ID );
+        } else {
+          // Fallback to /slug/ if page not found
+          $url = home_url( '/' . $slug . '/' );
+        }
+        ?>
+        
+        <a class="tile" href="<?php echo esc_url( $url ); ?>">
+          <img
+            src="<?php echo esc_url( $img_url ); ?>"
+            alt="<?php echo esc_attr( $t['label'] ); ?>"
+            class="tile-image"
+          />
+          <p class="tile-label"><?php echo esc_html( $t['label'] ); ?></p>
+        </a>
+
+        <?php
+      }
+      ?>
+    </div>
   </div>
 </section>
 
+
 <section class="our-partners">
 	<div class="container-fluid">
+
 		<section class="row">
 			<div class="col-12">
 				  <h3 class="partners-title">OUR PROUD PARTNERS</h3>

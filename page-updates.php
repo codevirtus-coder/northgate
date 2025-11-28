@@ -31,8 +31,10 @@ $news_query = new WP_Query( array(
         <?php echo esc_html( get_the_date() ); ?>
       </time>
            <!-- SHOW the excerpt (this was commented out) -->
-      <p class="section-lead text-news-muted "><?php echo esc_html( $excerpt ); ?></p>
-          <span class="btn-secondary-2">READ MORE</span>
+      <p class="section-lead text-news-muted mb-4"><?php echo esc_html( $excerpt ); ?></p>
+        <div class ="btn-news-bottom">
+                  <p class="btn-secondary">READ MORE</p>
+           </div>
         </div>
       </a>
       
