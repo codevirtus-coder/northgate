@@ -442,12 +442,31 @@
   overflow: hidden;
   transition: transform .28s ease, box-shadow .28s ease;
   text-align: center;
+ 
+}
+.tile .image-div{
+   background: #1A3564;
+  border-radius: 280px;
+   padding: 20px 20px
 }
 
 .tile img {
   max-width: 100%;
   height: auto;
+
 }
+
+
+.tile-image {
+  transition: filter 0.25s ease;
+  filter: brightness(0) invert(1);   /* white by default */
+}
+
+.tile:hover .tile-image {
+  filter: invert(72%) sepia(100%) saturate(1218%) hue-rotate(355deg) brightness(101%) contrast(104%);
+}
+
+
 
 .featured-tiles .tile:hover {
   /* transform: translateY(-8px); */
@@ -459,6 +478,7 @@
   font-weight: 700;
   letter-spacing: 0.6px;
   color: var(--brand); 
+
 }
 
 

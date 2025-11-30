@@ -157,7 +157,7 @@ $shop_items = [];
 
 $shops_query = new WP_Query([
   'post_type'      => 'shops',
-  'posts_per_page' => -1,
+  'posts_per_page' => 4,
   'post_status'    => 'publish',
   'orderby'        => 'menu_order',
   'order'          => 'ASC',
@@ -167,20 +167,20 @@ if ( $shops_query->have_posts() ) {
   while ( $shops_query->have_posts() ) {
     $shops_query->the_post();
 
-// Thumb: featured image or fallback
-if ( has_post_thumbnail() ) {
-  $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' );
-} else {
-  $thumb = get_stylesheet_directory_uri() . '/assets/images/stands/stand-placeholder.png';
-}
+    // Thumb: featured image or fallback
+    if ( has_post_thumbnail() ) {
+      $thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
+    } else {
+      $thumb = get_stylesheet_directory_uri() . '/assets/images/stands/stand-placeholder.png';
+    }
 
     $title = get_the_title();
     $slug  = sanitize_title( $title );
 
 
     $shop_items[] = [
-      'title' => get_the_title(),   
-       'link'  => home_url( '/' . $slug . '/' ),  
+      'title' => get_the_title(),   // shop name
+       'link'  => home_url( '/' . $slug . '/' ),   // shop page
       'image' => $thumb,
     ];
   }

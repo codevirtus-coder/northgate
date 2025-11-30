@@ -76,12 +76,12 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
     <div class="tiles-grid">
       <?php
       $tiles = array(
-        array('img' => 'icon-7.png', 'label' => 'PLAY'),
-        array('img' => 'icon-6.png', 'label' => 'SHOP'),
-        array('img' => 'icon-5.png', 'label' => 'WORK'),
-        array('img' => 'icon-4.png', 'label' => 'STAY'),
-        array('img' => 'icon-8.png', 'label' => 'HEALTH'),
-        array('img' => 'icon-9.png', 'label' => 'TRAVEL'),
+        array('img' => 'play.svg', 'label' => 'PLAY'),
+        array('img' => 'shop.svg', 'label' => 'SHOP'),
+        array('img' => 'work.svg', 'label' => 'WORK'),
+        array('img' => 'stay.svg', 'label' => 'STAY'),
+        array('img' => 'health.svg', 'label' => 'HEALTH'),
+        array('img' => 'travel.svg', 'label' => 'TRAVEL'),
       );
 
       foreach ( $tiles as $t ) {
@@ -101,12 +101,14 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
         }
         ?>
         
-        <a class="tile" href="<?php echo esc_url( $url ); ?>">
+        <a class="tile" href="<?php echo esc_url( $url ); ?>">   
+        <div class="image-div">
           <img
             src="<?php echo esc_url( $img_url ); ?>"
             alt="<?php echo esc_attr( $t['label'] ); ?>"
             class="tile-image"
           />
+        </div>
           <p class="tile-label"><?php echo esc_html( $t['label'] ); ?></p>
         </a>
 
