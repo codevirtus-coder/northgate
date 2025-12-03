@@ -46,12 +46,12 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
              <a href="<?php the_permalink(); ?>">
           <div class="news-thumb" style="background-image:url('<?php echo esc_url( $img ); ?>')"></div>
           <div class="news-body">
-            
-            <h3 class="section-lead-news-heading"><?php echo esc_html( get_the_title() ); ?></h3>
-
-            <time class="news-date" datetime="<?php echo esc_attr( get_the_date('c') ); ?>">
+             <time class="news-date" datetime="<?php echo esc_attr( get_the_date('c') ); ?>">
               <?php echo esc_html( get_the_date() ); ?>
             </time>
+            <h3 class="section-lead-news-heading"><?php echo esc_html( get_the_title() ); ?></h3>
+
+           
 
             <!-- SHOW the excerpt (this was commented out) -->
             <p class="section-lead muted mb-4"><?php echo esc_html( $excerpt ); ?></p>

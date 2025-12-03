@@ -17,12 +17,13 @@
         <?php
 
           $phone_opt  = function_exists('carbon_get_theme_option') ? carbon_get_theme_option('northgate_phone_1') : '';
-          $phone      = $phone_opt ? $phone_opt : '+263 779 227 037';
+          $phone      = $phone_opt ? $phone_opt : '+263 8644069477, +263 8677010700';
+
       
-          $tel_digits = preg_replace('/\D+/', '', $phone);
+          // $tel_digits = preg_replace('/\D+/', '', $phone);
 
           $email_opt  = function_exists('carbon_get_theme_option') ? carbon_get_theme_option('northgate_email') : '';
-          $email      = $email_opt ? $email_opt : 'info@northgate.co.zw';
+          $email      = $email_opt ? $email_opt : 'enquiries@northgateestates.co.zw';
 
           $address_opt = function_exists('carbon_get_theme_option') ? carbon_get_theme_option('northgate_address') : '';
           $address     = $address_opt ? $address_opt : '5 Campbell Rd Pomona, Borrowdale, Harare, Zimbabwe';
@@ -47,12 +48,12 @@
           </li>
 
        
-          <li class="mb-2">
+          <!-- <li class="mb-2">
             <a href="<?php echo $wa_href; ?>" target="_blank" rel="noopener">
               <i class="bi bi-whatsapp footer-icon" aria-hidden="true"></i>
               <span><?php echo esc_html( $phone ); ?></span>
             </a>
-          </li>
+          </li> -->
 
       
           <li class="mb-2">

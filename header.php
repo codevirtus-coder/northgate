@@ -73,6 +73,20 @@
       </button>
 
       <div class="collapse navbar-collapse" id="mainNavbar">
+
+
+    <!-- Close button INSIDE sidebar -->
+   <button class="navbar-toggler sidebar-close d-lg-none" type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#mainNavbar"
+    aria-controls="mainNavbar"
+    aria-expanded="true"
+    aria-label="Close navigation">
+   </button>
+
+
+
+
         <?php
         wp_nav_menu( array(
           'theme_location' => 'main_menu',
@@ -85,6 +99,7 @@
         ?>
       </div>
     </div>
+
   </nav>
 </header>
 

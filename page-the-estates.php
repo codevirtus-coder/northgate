@@ -53,7 +53,7 @@ if ( $page ) {
         </div>
 
 
-          <p class="tile-label"><?php echo esc_html( $t['label'] ); ?></p>
+          <p class="tile-label-1"><?php echo esc_html( $t['label'] ); ?></p>
         </a>
 
         <?php

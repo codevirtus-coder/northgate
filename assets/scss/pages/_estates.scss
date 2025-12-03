@@ -62,17 +62,22 @@
   filter: brightness(0) invert(1);
 }
 
+
+.tile-1 .image-div:hover {
+   background: var(--brand-primary);
+}
+
 .tile-1:hover .tile-image-1 {
-  filter: invert(72%) sepia(100%) saturate(1218%) hue-rotate(355deg) brightness(101%) contrast(104%);
+
 }
 
 .featured-tiles .tile:hover {
   /* transform: translateY(-8px); */
 }
 
-.tile-label {
+.tile-label-1 {
   margin-top: 8px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.6px;
   color: var(--brand); 

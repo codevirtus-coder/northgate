@@ -267,7 +267,7 @@
     </div>
   </section>
 
- <section class="house-plan-section-main mb-5">
+<section class="house-plan-section-main mb-5"> 
   <div class="container-fluid">
     <div class="lifestyle-header">
       <h2 class="section-heading">View Other Residency</h2>
@@ -275,9 +275,6 @@
     
     <div class="lifestyle-grid">
       <?php
-        // We already set this at the top of the template
-        // $selected_size = isset($_GET['size']) ? sanitize_text_field($_GET['size']) : '400 Sqm';
-
         // Map design_sizes -> stand page URLs (same idea as header)
         $size_links = array(
           '400 Sqm'            => '/400-sqm-stands',
@@ -308,7 +305,7 @@
             }
 
             // Don't show the current stand size
-            if ( $size === $selected_size ) {
+            if ( isset( $selected_size ) && $size === $selected_size ) {
               continue;
             }
 
@@ -343,24 +340,48 @@
           wp_reset_postdata();
         }
 
-        // Output cards
+        // Apply custom order
         if ( ! empty( $stand_cards ) ) :
-          foreach ( $stand_cards as $card ) :
+
+          $size_order = array(
+            '400 Sqm',
+            '600 Sqm',
+            '1200 Sqm',
+            'Cluster/Apartments',
+          );
+
+          $ordered_cards = array();
+
+          // 1. Add known sizes in this specific order (only if they exist & not current)
+          foreach ( $size_order as $label ) {
+            if ( isset( $stand_cards[ $label ] ) ) {
+              $ordered_cards[] = $stand_cards[ $label ];
+              unset( $stand_cards[ $label ] ); // avoid duplicates
+            }
+          }
+
+          // 2. Append any leftovers (unexpected sizes)
+          foreach ( $stand_cards as $card ) {
+            $ordered_cards[] = $card;
+          }
+
+          // 3. Output in ordered list
+          foreach ( $ordered_cards as $card ) :
       ?>
             <article class="home-card" style="background-image:url('<?php echo esc_url( $card['img'] ); ?>')">
-  <!-- full-card clickable overlay -->
-        <a
-    href="<?php echo esc_url( $card['url'] ); ?>"
-    class="home-card-link"
-    aria-label="<?php echo esc_attr( $card['title'] ); ?>">
-        </a>
+              <!-- full-card clickable overlay -->
+              <a
+                href="<?php echo esc_url( $card['url'] ); ?>"
+                class="home-card-link"
+                aria-label="<?php echo esc_attr( $card['title'] ); ?>">
+              </a>
 
-  <!-- caption overlay (stays at the bottom as per your CSS) -->
-  <div class="home-card-caption">
-    <strong><?php echo esc_html( $card['title'] ); ?></strong>
-    <span class="muted">Neat Homes to fit your family</span>
-  </div>
-</article>
+              <!-- caption overlay -->
+              <div class="home-card-caption">
+                <strong><?php echo esc_html( $card['title'] ); ?></strong>
+                <span class="muted">Neat Homes to fit your family</span>
+              </div>
+            </article>
 
       <?php
           endforeach;
@@ -372,6 +393,7 @@
     </div>
   </div>
 </section>
+
 
 
 </section> 

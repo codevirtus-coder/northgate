@@ -1,7 +1,8 @@
 <?php
 
 get_header();
-get_template_part( 'banners/banner-slider' );
+get_template_part( 'banners/allpage-banner' );
+$learn_link = '/updates';
 $hero_bg = get_stylesheet_directory_uri() . '/assets/images/Rectangle 15.png'; 
 $signup_logo = get_stylesheet_directory_uri() . '/assets/images/contact-logo.png'; 
 ?>
@@ -46,7 +47,7 @@ $signup_logo = get_stylesheet_directory_uri() . '/assets/images/contact-logo.png
                 <path d="M20 4H4a2 2 0 0 0-2 2v0 12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="#15345a"/>
               </svg>
             </span>
-            <a class="contact-text" href="mailto:enquiries@northgateestates.co.zw">enquiries@northgate.co.zw</a>
+            <a class="contact-text" href="mailto:enquiries@northgateestates.co.zw">enquiries@northgateestates.<br> co.zw</a>
           </div>
 
        
@@ -58,7 +59,7 @@ $signup_logo = get_stylesheet_directory_uri() . '/assets/images/contact-logo.png
               </svg>
             </span>
             <div class="contact-text">
-              5 Campbell Rd Pomona,<br> Borrowdale, Harare
+              5 Campbell Rd Pomona, <br>  Borrowdale, Harare, Zimbabwe
             </div>
           </div>
         </div>
@@ -69,7 +70,8 @@ $signup_logo = get_stylesheet_directory_uri() . '/assets/images/contact-logo.png
     
       <div class="visit-right">
         <div class="map-wrap">
-         <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d79119.36500869127!2d31.013236442718565!3d-17.777130084499845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d-17.809407999999998!2d31.04768!4m5!1s0x1931b1155f0c0667%3A0x17933969133f503c!2sSCENT%20SPACE%2C%20Pomona%2C%20Campbell%20Rd%2C%20Harare!3m2!1d-17.748203!2d31.0840513!5e0!3m2!1sen!2szw!4v1760453586293!5m2!1sen!2szw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d30398.771413982882!2d31.068398531503487!3d-17.751873859611532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s5%20campbell%20rd%20pomona!5e0!3m2!1sen!2szw!4v1764765697933!5m2!1sen!2szw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
@@ -86,29 +88,10 @@ $signup_logo = get_stylesheet_directory_uri() . '/assets/images/contact-logo.png
         Northgate Estates is a visionary development designed to redefine urban living, leveraging
         next-gen architecture, innovative technology, and sustainable design.
       </p>
+      <a class="btn-secondary" href="<?php echo esc_url( $learn_link ); ?>">
+        VIEW MORE UPDATES
+      </a>
     </div>
-
-        <aside class="hero-signup" aria-labelledby="signup-title">
-      <div class="signup-card">
-        <div class="signup-top">
-          <img src="<?php echo esc_url( $signup_logo ); ?>"
-               alt="Northgate Estates"
-               class="signup-logo">
-          <p class="section-lead">
-            Our Nicklaus-design championship golf course offers a fantastic experience
-            for golfers of all levels.
-          </p>
-        </div>
-
-        <?php echo do_shortcode(
-          '[contact-form-7 id="154fc83" title="Contact form" html_id="signup-form" html_class="signup-form"]'
-        ); ?>
-
-      </div>
-    </aside>
-
-
-
   </div>
 </section>
 

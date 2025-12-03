@@ -49,6 +49,14 @@ color: #DD9E17
   font-weight: 800;
 }
 
+@media (max-width: 991px) {
+  .navbar-nav .current-menu-item > .nav-link,
+  .navbar-nav .nav-link.active {
+    display: inline-block; 
+  }
+}
+
+
 .social-wrap {
   margin-left: 0.5rem;
   display: flex;
@@ -148,3 +156,98 @@ color: #DD9E17
 .top-menu a:hover {
 color: #FFD100
 }
+
+
+div#mainNavbar {
+    display: block;
+}
+
+// .navbar-collapse {
+//     flex-grow: 1;
+//     flex-basis: 100%;
+//     width: 20px;
+//     align-items: center;
+// }
+
+/* ---- MOBILE OFF-CANVAS NAV ---- */
+@media (max-width: 991px) {
+
+    /* Off-canvas panel (right side) */
+    .navbar-collapse {
+        position: fixed;
+        top: 0;
+        right: -300px; /* hidden off screen */
+        width: 300px;
+        height: 100vh;
+        background: #fff;
+        padding: 3.5rem  2rem; /* extra top space for close btn */
+        box-shadow: -2px 0 15px rgba(0,0,0,0.15);
+        overflow-y: auto;
+        transition: right 0.35s ease-in-out;
+        z-index: 9999;
+    }
+
+    .navbar-collapse.show {
+        right: 0;
+    }
+
+    /* Close button inside sidebar – top left of the panel */
+    .navbar-toggler.sidebar-close {
+        position: absolute;
+        top: 3rem;
+        right: 1rem;
+        z-index: 10000;
+        border: none;
+        box-shadow: none;
+    }
+
+    /* Keep the main toggler above content, but hide it when panel open (optional) */
+    .navbar-toggler.main-toggle {
+        z-index: 10000;
+    }
+
+    body.offcanvas-open .navbar-toggler.main-toggle {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+
+/* Remove default hamburger icon */
+.sidebar-close .navbar-toggler-icon {
+    display: none;
+}
+
+/* Close button positioned top-right */
+.sidebar-close {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;   /* <<< moved from left to right */
+    background: transparent;
+    border: none;
+    z-index: 10000;
+}
+
+/* CSS X icon */
+.sidebar-close::before,
+.sidebar-close::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 22px;
+    height: 2px;
+    background: #000; /* change to brand color if needed */
+    transform-origin: center;
+}
+
+.sidebar-close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.sidebar-close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+

@@ -1129,6 +1129,10 @@ Block::make( __( 'Stands Grid', 'northgate' ) )
                                 </div>
 
                                 <div class="news-body">
+                                    <time class="news-date" datetime="<?php echo esc_attr( get_the_date('c') ); ?>">
+                                      <?php echo esc_html( get_the_date() ); ?>
+                                    </time>
+
                                     <?php if ( $title ) : ?>
                                         <h3 class="section-lead-news-heading js-stand-title">
                                             <?php echo esc_html( $title ); ?>
