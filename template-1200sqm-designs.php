@@ -76,13 +76,14 @@
     }
   ?>
 
-  <?php if (!empty($plans)) : ?>
-    <?php $first_plan = $plans[0]; ?>
+  <?php if ( ! empty( $first_plan ) && ! empty( $first_plan['plan_img'] ) ) : ?>
 
   <div class="house-layout-inner container-fluid">
     
     <div class="house-right">
-      <h2 id="house-layout-title" class="section-heading"><?php echo esc_html($first_plan['title']); ?></h2>
+      <h2 id="house-layout-title" class="section-heading">
+        <?php echo esc_html($first_plan['title']); ?>
+      </h2>
 
       <p>View other House Designs</p>
       <!-- Plan Picker -->
@@ -92,7 +93,9 @@
                 aria-haspopup="listbox"
                 aria-expanded="false"
                 aria-label="Select house plan">
-          <span class="plan-button-label"><?php echo esc_html($first_plan['title']); ?></span>
+          <span class="plan-button-label">
+            <?php echo esc_html($first_plan['title']); ?>
+          </span>
           <span class="plan-button-caret" aria-hidden="true">▾</span>
         </button>
 
@@ -104,7 +107,9 @@
                 aria-selected="<?php echo $index === 0 ? 'true' : 'false'; ?>">
               <p class="plan-title"><?php echo esc_html($plan['title']); ?></p>
               <?php if ($plan['photo_img']) : ?>
-                <img class="plan-thumb" src="<?php echo esc_url($plan['photo_img']); ?>" alt="<?php echo esc_attr($plan['title']); ?>" />
+                <img class="plan-thumb"
+                     src="<?php echo esc_url($plan['photo_img']); ?>"
+                     alt="<?php echo esc_attr($plan['title']); ?>" />
               <?php endif; ?>
             </li>
             <?php if ($index < count($plans) - 1) : ?>
@@ -129,19 +134,22 @@
 
       <div class="layout-total">
         <span id="total-label" class="total-label">Total Price</span>
-        <span id="total-value" class="total-value"><?php echo esc_html($first_plan['total_price']); ?></span>
+        <span id="total-value" class="total-value">
+          <?php echo esc_html($first_plan['total_price']); ?>
+        </span>
       </div>
     </div>
     
     <div class="house-left" aria-labelledby="house-layout-title">
       <div class="floor-frames">
-        <?php if ($first_plan['plan_img']) : ?>
-          <div id="panel-drawing" class="floor-panel" role="tabpanel">
-            <div class="floor-image-plan">
-              <img id="plan-drawing" class="floor-image-1" src="<?php echo esc_url($first_plan['plan_img']); ?>" alt="Floor Plan" />
-            </div>
+        <div id="panel-drawing" class="floor-panel" role="tabpanel">
+          <div class="floor-image-plan">
+            <img id="plan-drawing"
+                 class="floor-image-1"
+                 src="<?php echo esc_url($first_plan['plan_img']); ?>"
+                 alt="Floor Plan" />
           </div>
-        <?php endif; ?>
+        </div>
       </div>
     </div>
   </div>
@@ -156,7 +164,9 @@
             if (!empty($slide['design_images'])) :
         ?>       
               <div class="carousel-item <?php echo $slide_index === 0 ? 'active' : ''; ?>">
-                <img src="<?php echo esc_url($slide['design_images']); ?>" class="d-block w-100" alt="Design Slide <?php echo $slide_index + 1; ?>">
+                <img src="<?php echo esc_url($slide['design_images']); ?>"
+                     class="d-block w-100"
+                     alt="Design Slide <?php echo $slide_index + 1; ?>">
               </div>
         <?php 
             endif;
@@ -193,9 +203,13 @@
     </div>
   </section>
 
-  <?php else : ?>
-    <h2>No designs found.</h2>
-  <?php endif; ?>
+<?php endif ?>
+
+<?php if (empty($plans)) : ?>
+  <h2>No designs found.</h2>
+<?php endif; ?>
+
+
 
   <section class="stand-section">
     <div class="stand-inner container-fluid">

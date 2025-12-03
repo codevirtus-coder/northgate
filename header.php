@@ -94,6 +94,10 @@ $preview_data = [];
 // =========================================
 // 1) Residential: designs → stands preview
 // =========================================
+// =========================================
+// 1) Residential: designs → stands preview
+//    (one item per unique size, e.g. one "400 Sqm")
+// =========================================
 $res_items = [];
 
 $res_query = new WP_Query([
@@ -104,12 +108,14 @@ $res_query = new WP_Query([
   'order'          => 'ASC',
 ]);
 
-$size_links = [
-  '400 Sqm'            => '/400-sqm-stands',
-  '600 Sqm'            => '/600-sqm-stands',
-  '1200 Sqm'           => '/1200-sqm-stands',
-  'Cluster/Apartments' => '/cluster-apartments',
+
+  $size_links = [
+  '400 Sqm'            => '/residential/400-sqm-stands',
+  '600 Sqm'            => '/residential/600-sqm-stands',
+  '1200 Sqm'           => '/residential/1200-sqm-stands',
+  'Cluster/Apartments' => '/residential/cluster-apartments',
 ];
+
 
 if ( $res_query->have_posts() ) {
   while ( $res_query->have_posts() ) {
@@ -117,84 +123,181 @@ if ( $res_query->have_posts() ) {
 
     $size = carbon_get_post_meta( get_the_ID(), 'design_sizes' );
 
-    // Map each size to its stands page
-    if ( $size && isset( $size_links[ $size ] ) ) {
-      $target_url = home_url( $size_links[ $size ] );
+    // If we have a size, use it as the key so we only keep ONE per size
+    if ( $size ) {
+
+      // Already added this size? Skip to avoid duplicates.
+      if ( isset( $res_items[ $size ] ) ) {
+        continue;
+      }
+
+      // Build slug from the size, e.g. "400 Sqm" -> "400-sqm-stands"
+      $slug       = sanitize_title( $size ) . '-stands';
+      $target_url = home_url( '/residential/' . $slug . '/' );
+
+      // Thumb: first slider image > featured image > fallback
+      $slider_images = carbon_get_post_meta( get_the_ID(), 'design_slider' );
+      if ( ! empty( $slider_images ) && ! empty( $slider_images[0]['design_images'] ) ) {
+        $thumb = $slider_images[0]['design_images'];
+      } elseif ( has_post_thumbnail() ) {
+        $thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
+      } else {
+        $thumb = get_stylesheet_directory_uri() . '/assets/images/stands/stand-placeholder.png';
+      }
+
+      // Store keyed by size
+      $res_items[ $size ] = [
+        'title' => $size,
+        'link'  => $target_url,
+        'image' => $thumb,
+      ];
+
     } else {
+      // No size set → fall back to normal behavior (optional)
       $target_url = get_permalink();
-    }
 
-    // Thumb: first slider image > featured image > fallback
-    $slider_images = carbon_get_post_meta( get_the_ID(), 'design_slider' );
-    if ( ! empty( $slider_images ) && ! empty( $slider_images[0]['design_images'] ) ) {
-      $thumb = $slider_images[0]['design_images'];
-    } elseif ( has_post_thumbnail() ) {
-      $thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
-    } else {
-      $thumb = get_stylesheet_directory_uri() . '/assets/images/stands/stand-placeholder.png';
-    }
+      $slider_images = carbon_get_post_meta( get_the_ID(), 'design_slider' );
+      if ( ! empty( $slider_images ) && ! empty( $slider_images[0]['design_images'] ) ) {
+        $thumb = $slider_images[0]['design_images'];
+      } elseif ( has_post_thumbnail() ) {
+        $thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
+      } else {
+        $thumb = get_stylesheet_directory_uri() . '/assets/images/stands/stand-placeholder.png';
+      }
 
-    $res_items[] = [
-      'title' => $size ?: get_the_title(),
-      'link'  => $target_url,
-      'image' => $thumb,
-    ];
+      $res_items[] = [
+        'title' => get_the_title(),
+        'link'  => $target_url,
+        'image' => $thumb,
+      ];
+    }
   }
   wp_reset_postdata();
 }
 
 if ( $res_items ) {
-  // This key must match your nav label "Residential"
-  $preview_data['residential'] = ['items' => $res_items];
+
+  // Desired order
+  $size_order = [
+    '400 Sqm',
+    '600 Sqm',
+    '1200 Sqm',
+    'Cluster/Apartments',
+  ];
+
+  $ordered = [];
+
+  // 1. Add known sizes in this specific order
+  foreach ( $size_order as $label ) {
+    if ( isset( $res_items[ $label ] ) ) {
+      $ordered[] = $res_items[ $label ];
+      unset( $res_items[ $label ] ); // remove from original so we don't duplicate
+    }
+  }
+
+  // 2. Append any leftovers (e.g. designs without size or weird sizes)
+  foreach ( $res_items as $item ) {
+    $ordered[] = $item;
+  }
+
+  // 3. Use this ordered list
+  $preview_data['residential'] = ['items' => $ordered];
 }
+
+
 
 
 
 // =========================================
 // 2) The Estates: shops → estates preview
 // =========================================
-$shop_items = [];
+// $shop_items = [];
 
-$shops_query = new WP_Query([
-  'post_type'      => 'shops',
-  'posts_per_page' => 4,
-  'post_status'    => 'publish',
-  'orderby'        => 'menu_order',
-  'order'          => 'ASC',
-]);
+// $shops_query = new WP_Query([
+//   'post_type'      => 'shops',
+//   'posts_per_page' => -1,
+//   'post_status'    => 'publish',
+//   'orderby'        => 'menu_order',
+//   'order'          => 'ASC',
+// ]);
 
-if ( $shops_query->have_posts() ) {
-  while ( $shops_query->have_posts() ) {
-    $shops_query->the_post();
+// if ( $shops_query->have_posts() ) {
+//   while ( $shops_query->have_posts() ) {
+//     $shops_query->the_post();
 
-    // Thumb: featured image or fallback
-    if ( has_post_thumbnail() ) {
-      $thumb = get_the_post_thumbnail_url( get_the_ID(), 'medium' );
-    } else {
-      $thumb = get_stylesheet_directory_uri() . '/assets/images/stands/stand-placeholder.png';
-    }
+// // Thumb: featured image or fallback
+// if ( has_post_thumbnail() ) {
+//   $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' );
+// } else {
+//   $thumb = get_stylesheet_directory_uri() . '/assets/images/stands/stand-placeholder.png';
+// }
 
-    $title = get_the_title();
-    $slug  = sanitize_title( $title );
+//     $title = get_the_title();
+//     $slug  = sanitize_title( $title );
 
 
-    $shop_items[] = [
-      'title' => get_the_title(),   // shop name
-       'link'  => home_url( '/' . $slug . '/' ),   // shop page
-      'image' => $thumb,
-    ];
-  }
-  wp_reset_postdata();
-}
+//     $shop_items[] = [
+//       'title' => get_the_title(),   
+//        'link'  => home_url( '/' . $slug . '/' ),  
+//       'image' => $thumb,
+//     ];
+//   }
+//   wp_reset_postdata();
+// }
 
-if ( $shop_items ) {
-  // This key must match your menu label text.
-  // If your nav item is literally "The Estates", this is correct:
-  $preview_data['the estates'] = ['items' => $shop_items];
+// if ( $shop_items ) {
+//   // This key must match your menu label text.
+//   // If your nav item is literally "The Estates", this is correct:
+//   $preview_data['the estates'] = ['items' => $shop_items];
+//   // If your nav item is "Estates" only, use this instead:
+//   // $preview_data['estates'] = ['items' => $shop_items];
+// }
 
-  // If your nav item is "Estates" only, use this instead:
-  // $preview_data['estates'] = ['items' => $shop_items];
-}
+
+// $about_items = [];
+
+// $aboutUs_query = new WP_Query([
+//   'post_type'      => 'aboutUs',
+//   'posts_per_page' => 4,
+//   'post_status'    => 'publish',
+//   'orderby'        => 'modified', 
+//   'order'          => 'DESC',
+// ]);
+
+// if ( $aboutUs_query->have_posts() ) {
+//   while ( $aboutUs_query->have_posts() ) {
+//     $aboutUs_query->the_post();
+
+//     // Thumb: featured image or fallback
+//     // Thumb: featured image or fallback
+// if ( has_post_thumbnail() ) {
+//   $thumb = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+// } else {
+//   $thumb = get_stylesheet_directory_uri() . '/assets/images/stands/stand-placeholder.png';
+// }
+
+
+//     $title = get_the_title();
+//     $slug  = sanitize_title( $title );
+
+
+//     $about_items[] = [
+//       'title' => get_the_title(),   // shop name
+//        'link'  => home_url( '/' . $slug . '/' ),   // shop page
+//       'image' => $thumb,
+//     ];
+//   }
+//   wp_reset_postdata();
+// }
+
+// if ( $about_items ) {
+//   // This key must match your menu label text.
+//   // If your nav item is literally "The Estates", this is correct:
+//   $preview_data['about us'] = ['items' => $about_items];
+
+//   // If your nav item is "Estates" only, use this instead:
+//   // $preview_data['estates'] = ['items' => $shop_items];
+// }
 ?>
 
 <script>
@@ -305,6 +408,7 @@ document.addEventListener('DOMContentLoaded', function () {
       clearHide();
       hideCard();
     }
+
   });
 
   // Close with Escape

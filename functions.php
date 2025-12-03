@@ -134,17 +134,22 @@ add_filter('nav_menu_css_class', function ($classes, $item, $args) {
 }, 10, 3);
 
 add_filter('nav_menu_link_attributes', function ($atts, $item, $args) {
-	if (!empty($args->theme_location) && $args->theme_location === 'main_menu') {
-		$atts['class'] = (isset($atts['class']) ? $atts['class'].' ' : '').'nav-link';
-		if (in_array('menu-item-has-children', (array) $item->classes, true)) {
-			$atts['class'] .= ' dropdown-toggle';
-			$atts['role'] = 'button';
-			$atts['data-bs-toggle'] = 'dropdown';
-			$atts['aria-expanded'] = 'false';
-		}
-	}
-	return $atts;
+    if (!empty($args->theme_location) && $args->theme_location === 'main_menu') {
+        $atts['class'] = (isset($atts['class']) ? $atts['class'].' ' : '').'nav-link';
+
+        // keep a class if you want for styling, but NO data-bs-toggle
+        if (in_array('menu-item-has-children', (array) $item->classes, true)) {
+            $atts['class'] .= ' has-children'; // your own class
+            // remove these lines:
+            // $atts['class'] .= ' dropdown-toggle';
+            // $atts['role'] = 'button';
+            // $atts['data-bs-toggle'] = 'dropdown';
+            // $atts['aria-expanded'] = 'false';
+        }
+    }
+    return $atts;
 }, 10, 3);
+
 
 
 /* -----------------------------------------------------------
@@ -353,6 +358,24 @@ Container::make( 'post_meta', 'Shop Details' )
             ] ),
 
         Field::make( 'textarea', 'shop_intro', 'Short Intro / Tagline' )
+            ->set_rows( 3 )
+            ->set_width( 100 )
+            ->set_help_text( 'Optional short text about this shop. You can decide later how to show it on the frontend.' ),
+    ] );
+
+
+    Container::make( 'post_meta', 'About Details' )
+    ->where( 'post_type', '=', 'aboutUs' )
+    ->add_fields( [
+        // Dropdown like "Land Space" but for shops
+        Field::make( 'select', 'about_group', 'about' )
+            ->set_width( 50 )
+            ->set_options( [
+                'OVERVIEW'   => 'OVERVIEW',
+                'OUR_PARTNERS'   => 'OUR_PARTNERS',
+            ] ),
+
+        Field::make( 'textarea', 'about_intro', 'Short Intro / Tagline' )
             ->set_rows( 3 )
             ->set_width( 100 )
             ->set_help_text( 'Optional short text about this shop. You can decide later how to show it on the frontend.' ),
@@ -631,10 +654,13 @@ Block::make( __( 'Hero Two Column Rich', 'northgate' ) )
             ->set_default_value( 'LEARN MORE' )
             ->set_width( 50 ),
 
+
         Field::make( 'text', 'btn_link', __( 'Button URL/Link', 'northgate' ) )
             ->set_help_text( 'e.g. /residential or full URL' )
             ->set_width( 50 ),
 
+
+            
         Field::make( 'image', 'datvest_image', __( 'Small Left Image', 'northgate' ) )
             ->set_help_text( 'The small Datvest-style image next to the button.' ),
 
@@ -1173,7 +1199,6 @@ add_action('wp_enqueue_scripts', function () {
         'global-styles',           
         'wp-block-library-theme',  
         'classic-theme-styles',   
-    
     ];
     foreach ($handles as $h) {
         wp_dequeue_style($h);
@@ -1208,6 +1233,27 @@ add_action('init', function () {
         'public'        => true,
         'hierarchical'  => false,
         'rewrite'       => ['slug' => 'shops'],
+        'supports'      => ['title', 'thumbnail'],
+        'menu_position' => 7,
+        'menu_icon'     => 'dashicons-store',
+    ]);
+});
+
+
+/* -----------------------------------------------------------
+ ABOUT CPT 
+ * ----------------------------------------------------------- */
+add_action('init', function () {
+    register_post_type('aboutUs', [
+        'labels' => [
+            'name'          => __('About Menu', 'northgate'),
+            'singular_name' => __('about', 'northgate'),
+            'add_new_item'  => __('Add New menu', 'northgate'),
+            'add_new'       => __('Add New menu', 'northgate'),
+        ],
+        'public'        => true,
+        'hierarchical'  => false,
+        'rewrite'       => ['slug' => 'aboutUs'],
         'supports'      => ['title', 'thumbnail'],
         'menu_position' => 7,
         'menu_icon'     => 'dashicons-store',

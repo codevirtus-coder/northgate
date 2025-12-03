@@ -87,22 +87,27 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
       foreach ( $tiles as $t ) {
         $img_url = get_template_directory_uri() . '/assets/images/icons/' . $t['img'];
 
-        // Make slug from label: PLAY -> play, etc
-        $slug = sanitize_title( $t['label'] );
+// Parent slug
+$parent_slug = 'the-estates';
 
-        // Try to find a real page with that slug
-        $page = get_page_by_path( $slug );
+// Child slug from label: PLAY -> play
+$child_slug = sanitize_title( $t['label'] );
 
-        if ( $page ) {
-          $url = get_permalink( $page->ID );
-        } else {
-          // Fallback to /slug/ if page not found
-          $url = home_url( '/' . $slug . '/' );
-        }
+// Try to find page with path "the-estates/play", etc.
+$page = get_page_by_path( $parent_slug . '/' . $child_slug );
+
+if ( $page ) {
+    // Use real page permalink if it exists
+    $url = get_permalink( $page->ID );
+} else {
+    // Fallback to /the-estates/play/
+    $url = home_url( '/' . $parent_slug . '/' . $child_slug . '/' );
+}
+
         ?>
         
         <a class="tile" href="<?php echo esc_url( $url ); ?>">   
-        <div class="image-div">
+        <div class="image">
           <img
             src="<?php echo esc_url( $img_url ); ?>"
             alt="<?php echo esc_attr( $t['label'] ); ?>"

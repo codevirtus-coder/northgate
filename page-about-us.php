@@ -31,7 +31,7 @@ $invest_link = '#invest';
       </p>
     </div>
 
-    <aside class="hero-signup" aria-labelledby="signup-title">
+    <!-- <aside class="hero-signup" aria-labelledby="signup-title">
       <div class="signup-card">
         <div class="signup-top">
           <img src="<?php echo esc_url( $signup_logo ); ?>"
@@ -48,7 +48,7 @@ $invest_link = '#invest';
         ); ?>
 
       </div>
-    </aside>
+    </aside> -->
   </div>
 </section>
 

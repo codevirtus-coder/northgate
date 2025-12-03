@@ -1,5 +1,5 @@
 <?php
-  /* Template Name: Designs - Cluster/Apartments */
+  /* Template Name: Designs - Cluster Homes */
   get_header();
 ?>
 
