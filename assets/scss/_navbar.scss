@@ -52,9 +52,19 @@ color: #DD9E17
 @media (max-width: 991px) {
   .navbar-nav .current-menu-item > .nav-link,
   .navbar-nav .nav-link.active {
-    display: inline-block; 
+    display: inline-block;
+    border-bottom: none !important;   
+  }
+
+
+  .mobile-nav-menu .current-menu-item > .nav-link,
+  .mobile-nav-menu .nav-link.active {
+    border-bottom: none !important;
   }
 }
+
+
+
 
 
 .social-wrap {
@@ -249,5 +259,67 @@ div#mainNavbar {
 
 .sidebar-close::after {
     transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* =========================
+   MOBILE MENU ACCORDION
+   ========================= */
+@media (max-width: 991.98px) {
+
+
+  .navbar-nav.mobile-nav-menu .sub-menu {
+    display: none !important;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+
+  .navbar-nav.mobile-nav-menu > li > .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+
+  .navbar-nav.mobile-nav-menu > li.menu-item-has-children > .nav-link::after {
+    content: "\276F"; /* › */
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+
+
+  .navbar-nav.mobile-nav-menu .sub-menu > li > .nav-link {
+    padding: 0.6rem 0;
+    padding-left: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+
+  .navbar-nav.mobile-nav-menu li.is-open > .sub-menu {
+    display: block !important;
+  }
+
+  .navbar-nav.mobile-nav-menu li.is-open > .nav-link::after {
+    transform: rotate(90deg);
+  }
+}
+
+/* Mobile: hide all submenus by default */
+@media (max-width: 991px) {
+  .mobile-nav-menu .sub-menu {
+    display: none;
+  }
+
+  /* When you're on the parent page OR a child page,
+     open that submenu automatically */
+  .mobile-nav-menu .menu-item-has-children.current-menu-item > .sub-menu,
+  .mobile-nav-menu .menu-item-has-children.current-menu-ancestor > .sub-menu {
+    display: block;
+  }
 }
 

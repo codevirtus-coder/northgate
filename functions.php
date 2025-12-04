@@ -14,6 +14,7 @@ add_action('after_setup_theme', function () {
 		'main_menu'   => __('Main Menu', 'northgate'),
 		'footer_menu' => __('Footer Menu', 'northgate'),
 		'top_menu'    => __('Top Menu', 'northgate'),
+        'mobile_menu' => __('Mobile Menu', 'northgate'),
 	]);
 
 	add_theme_support('post-thumbnails');
@@ -134,22 +135,18 @@ add_filter('nav_menu_css_class', function ($classes, $item, $args) {
 }, 10, 3);
 
 add_filter('nav_menu_link_attributes', function ($atts, $item, $args) {
-    if (!empty($args->theme_location) && $args->theme_location === 'main_menu') {
-        $atts['class'] = (isset($atts['class']) ? $atts['class'].' ' : '').'nav-link';
+    if (
+        ! empty( $args->theme_location ) &&
+        in_array( $args->theme_location, ['main_menu', 'mobile_menu'], true )
+    ) {
+        $atts['class'] = (isset($atts['class']) ? $atts['class'].' ' : '') . 'nav-link';
 
-        // keep a class if you want for styling, but NO data-bs-toggle
-        if (in_array('menu-item-has-children', (array) $item->classes, true)) {
-            $atts['class'] .= ' has-children'; // your own class
-            // remove these lines:
-            // $atts['class'] .= ' dropdown-toggle';
-            // $atts['role'] = 'button';
-            // $atts['data-bs-toggle'] = 'dropdown';
-            // $atts['aria-expanded'] = 'false';
+        if ( in_array( 'menu-item-has-children', (array) $item->classes, true ) ) {
+            $atts['class'] .= ' has-children';
         }
     }
     return $atts;
 }, 10, 3);
-
 
 
 /* -----------------------------------------------------------
@@ -1079,6 +1076,10 @@ Block::make( __( 'Stands Grid', 'northgate' ) )
                     ->set_rows( 3 ),
 
                 Field::make( 'text', 'card_link', __( 'Link URL or Title', 'northgate' ) ),
+
+                // ✅ New: checkbox to show/hide date for this card
+                Field::make( 'checkbox', 'card_show_date', __( 'Show Date', 'northgate' ) )
+                    ->set_option_value( 'yes' ),
             ) ),
     ) )
     ->set_description( __( 'Grid of stand/plan cards (image, title, intro, button)', 'northgate' ) )
@@ -1099,18 +1100,21 @@ Block::make( __( 'Stands Grid', 'northgate' ) )
             <div class="news-carousel">
                 <?php foreach ( $cards as $card ) :
 
-                    $img      = $card['card_image'] ?? '';
-                    $title    = $card['card_title'] ?? '';
-                    $intro    = $card['card_intro'] ?? '';
-                    $raw_link = trim( $card['card_link'] ?? '' );
+                    $img          = $card['card_image']     ?? '';
+                    $title        = $card['card_title']     ?? '';
+                    $intro        = $card['card_intro']     ?? '';
+                    $raw_link     = trim( $card['card_link'] ?? '' );
+                    $show_date    = ! empty( $card['card_show_date'] ); // ✅ checkbox value
 
                     $href = '';
 
                     if ( $raw_link !== '' ) {
+                        // Full URL
                         if ( preg_match( '#^https?://#i', $raw_link ) ) {
                             $href = $raw_link;
 
                         } else {
+                            // Treat as slug/label → internal page
                             $slug = sanitize_title( $raw_link );
                             $href = home_url( '/' . $slug . '/' );
                         }
@@ -1124,14 +1128,18 @@ Block::make( __( 'Stands Grid', 'northgate' ) )
                             <div class="js-stand-link">
                         <?php endif; ?>
 
-                                <div class="news-thumb js-stand-image"
-                                     style="<?php echo $img ? 'background-image:url(' . esc_url( $img ) . ');' : ''; ?>">
-                                </div>
+                                <?php if ( $img ) : ?>
+                                    <div class="news-thumb js-stand-image"
+                                         style="background-image:url('<?php echo esc_url( $img ); ?>');">
+                                    </div>
+                                <?php endif; ?>
 
                                 <div class="news-body">
-                                    <time class="news-date" datetime="<?php echo esc_attr( get_the_date('c') ); ?>">
-                                      <?php echo esc_html( get_the_date() ); ?>
-                                    </time>
+                                    <?php if ( $show_date ) : ?>
+                                        <time class="news-date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
+                                            <?php echo esc_html( get_the_date() ); ?>
+                                        </time>
+                                    <?php endif; ?>
 
                                     <?php if ( $title ) : ?>
                                         <h3 class="section-lead-news-heading js-stand-title">
@@ -1160,7 +1168,8 @@ Block::make( __( 'Stands Grid', 'northgate' ) )
         </section>
 
         <?php
-    });
+    } );
+
 });
 
 

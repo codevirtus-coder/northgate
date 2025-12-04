@@ -74,30 +74,38 @@
 
       <div class="collapse navbar-collapse" id="mainNavbar">
 
+  <!-- Close button INSIDE sidebar (mobile only) -->
+  <button class="navbar-toggler sidebar-close d-lg-none" type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="true"
+          aria-label="Close navigation">
+  </button>
 
-    <!-- Close button INSIDE sidebar -->
-   <button class="navbar-toggler sidebar-close d-lg-none" type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#mainNavbar"
-    aria-controls="mainNavbar"
-    aria-expanded="true"
-    aria-label="Close navigation">
-   </button>
+  <?php
+  // Desktop menu (horizontal)
+  wp_nav_menu( array(
+    'theme_location' => 'main_menu',
+    'container'      => false,
+    'menu_class'     => 'navbar-nav ms-auto mb-2 mb-lg-0 d-none d-lg-flex',
+    'fallback_cb'    => false,
+    'depth'          => 2,
+    'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+  ) );
 
+  // Mobile sidebar menu (uses your "Mobile menu")
+  wp_nav_menu( array(
+    'theme_location' => 'mobile_menu',
+    'container'      => false,
+    'menu_class'     => 'navbar-nav mobile-nav-menu d-lg-none',
+    'fallback_cb'    => false,
+    'depth'          => 2,
+    'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+  ) );
+  ?>
+</div>
 
-
-
-        <?php
-        wp_nav_menu( array(
-          'theme_location' => 'main_menu',
-          'container'      => false,
-          'menu_class'     => 'navbar-nav ms-auto mb-2 mb-lg-0',
-          'fallback_cb'    => false,
-          'depth'          => 2,
-          'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-        ) );
-        ?>
-      </div>
     </div>
 
   </nav>
@@ -434,4 +442,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const mobileMenu = document.querySelector('.mobile-nav-menu');
+  if (!mobileMenu) return;
+
+  mobileMenu.addEventListener('click', function (e) {
+    const link = e.target.closest('a.nav-link');
+    if (!link) return;
+
+    const li = link.parentElement;
+
+    // Only care about items that have children
+    if (!li.classList.contains('menu-item-has-children')) {
+      return; // normal link behaviour
+    }
+
+    // If this item is not open yet: open it and block navigation
+    if (!li.classList.contains('is-open')) {
+      e.preventDefault();          // stop going to the URL
+      li.classList.add('is-open'); // show submenu
+    } else {
+      // Already open → allow normal click to follow the link
+      // (no preventDefault here)
+    }
+  });
+});
+
 </script>

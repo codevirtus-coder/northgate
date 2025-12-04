@@ -46,7 +46,6 @@
               <span><?php echo esc_html( $phone ); ?></span>
             </a>
           </li>
-
        
           <!-- <li class="mb-2">
             <a href="<?php echo $wa_href; ?>" target="_blank" rel="noopener">

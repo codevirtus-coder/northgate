@@ -52,7 +52,6 @@ $webm   = get_template_directory_uri() . '/assets/video/hero.webm';
             <h3 class="section-lead-news-heading"><?php echo esc_html( get_the_title() ); ?></h3>
 
            
-
             <!-- SHOW the excerpt (this was commented out) -->
             <p class="section-lead muted mb-4"><?php echo esc_html( $excerpt ); ?></p>
            <div class ="btn-news-bottom">
